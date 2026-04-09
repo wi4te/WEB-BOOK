@@ -604,7 +604,7 @@ body {
   position: relative;
 }
 
-.chapter:not(.starfield)::before {
+.chapter::before {
   content: '';
   position: absolute;
   top: 0;
@@ -616,7 +616,7 @@ body {
   z-index: 2;
 }
 
-.chapter:not(.starfield)::after {
+.chapter::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -851,217 +851,81 @@ body {
 /* ============ STARFIELD BACKGROUND ============ */
 .starfield {
   position: relative;
-  background: linear-gradient(to bottom,
-    #010008 0%,
-    #060020 20%,
-    #0a0030 40%,
-    #080025 60%,
-    #050018 80%,
-    #010008 100%);
+  background: linear-gradient(to bottom, #020010 0%, #0a0015 40%, #0c0a1a 100%);
   overflow: hidden;
   padding: 4rem 2rem;
 }
 
-/* Nebula glow — ABSOLUTE not fixed */
-.starfield-nebula {
+.starfield::before,
+.starfield::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(100,60,180,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 30%, rgba(60,80,200,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(120,60,160,0.05) 0%, transparent 50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
-  z-index: 0;
-  animation: nebulaShift 20s ease-in-out infinite alternate;
 }
 
-@keyframes nebulaShift {
+.starfield::before {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 40% 15%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.5px 1.5px at 85% 50%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 30% 85%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 50% 40%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 65% 75%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 90% 65%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 5% 50%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 75% 5%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 20% 35%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 60% 20%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 95% 40%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.5), transparent);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+.starfield::after {
+  background-image:
+    radial-gradient(2px 2px at 18% 28%, rgba(200,180,255,0.4), transparent),
+    radial-gradient(2.5px 2.5px at 42% 62%, rgba(200,200,255,0.3), transparent),
+    radial-gradient(2px 2px at 68% 18%, rgba(255,220,200,0.4), transparent),
+    radial-gradient(2px 2px at 88% 72%, rgba(200,220,255,0.3), transparent),
+    radial-gradient(2.5px 2.5px at 32% 42%, rgba(220,200,255,0.4), transparent),
+    radial-gradient(2px 2px at 78% 88%, rgba(200,200,255,0.3), transparent),
+    radial-gradient(2px 2px at 52% 8%, rgba(255,200,220,0.4), transparent),
+    radial-gradient(2.5px 2.5px at 8% 58%, rgba(200,220,255,0.3), transparent);
+  animation: twinkle 6s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes twinkle {
   0% { opacity: 0.6; }
   50% { opacity: 1; }
   100% { opacity: 0.7; }
 }
 
-/* Star layers — use dedicated divs instead of ::before/::after */
-.starfield-stars-small {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    radial-gradient(1.5px 1.5px at 10% 20%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(2px 2px at 40% 15%, rgba(255,255,255,1), transparent),
-    radial-gradient(1px 1px at 55% 60%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1.5px 1.5px at 70% 30%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(2px 2px at 85% 50%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1.5px 1.5px at 30% 85%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(2px 2px at 50% 40%, rgba(255,255,255,1), transparent),
-    radial-gradient(1px 1px at 65% 75%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1.5px 1.5px at 80% 10%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 90% 65%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(2px 2px at 5% 50%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1.5px 1.5px at 45% 90%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1px 1px at 75% 5%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1.5px 1.5px at 20% 35%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(2px 2px at 60% 20%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1.5px 1.5px at 95% 40%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.6), transparent),
-    radial-gradient(1px 1px at 12% 92%, rgba(255,255,255,0.7), transparent),
-    radial-gradient(1.5px 1.5px at 38% 8%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 72% 68%, rgba(255,255,255,0.5), transparent),
-    radial-gradient(2px 2px at 88% 22%, rgba(255,255,255,0.8), transparent);
-  background-size: 100% 600px;
-  background-repeat: repeat-y;
-  animation: twinkle 4s ease-in-out infinite alternate;
-}
-
-.starfield-stars-large {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    radial-gradient(2.5px 2.5px at 18% 28%, rgba(180,160,255,0.6), transparent),
-    radial-gradient(3px 3px at 42% 62%, rgba(160,180,255,0.5), transparent),
-    radial-gradient(2.5px 2.5px at 68% 18%, rgba(255,200,180,0.5), transparent),
-    radial-gradient(2px 2px at 88% 72%, rgba(160,200,255,0.4), transparent),
-    radial-gradient(3px 3px at 32% 42%, rgba(200,170,255,0.5), transparent),
-    radial-gradient(2.5px 2.5px at 78% 88%, rgba(160,180,255,0.4), transparent),
-    radial-gradient(2px 2px at 52% 8%, rgba(255,180,200,0.5), transparent),
-    radial-gradient(3px 3px at 8% 58%, rgba(160,200,255,0.4), transparent),
-    radial-gradient(2px 2px at 62% 45%, rgba(200,160,255,0.3), transparent),
-    radial-gradient(2.5px 2.5px at 25% 78%, rgba(180,200,255,0.4), transparent);
-  background-size: 100% 800px;
-  background-repeat: repeat-y;
-  animation: twinkle 6s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.5; }
-  25% { opacity: 0.9; }
-  50% { opacity: 1; }
-  75% { opacity: 0.7; }
-  100% { opacity: 0.6; }
-}
-
-/* Shooting stars container */
-.shooting-stars {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.shooting-star-anim {
-  position: absolute;
-  width: 80px;
-  height: 1px;
-  background: linear-gradient(to right, rgba(255,255,255,0.7), transparent);
-  transform: rotate(-35deg);
-  opacity: 0;
-  animation: shootingStar var(--duration) ease-in var(--delay) infinite;
-}
-
-@keyframes shootingStar {
-  0% {
-    opacity: 0;
-    transform: rotate(-35deg) translateX(0);
-  }
-  2% {
-    opacity: 1;
-  }
-  6% {
-    opacity: 0.8;
-    transform: rotate(-35deg) translateX(200px);
-  }
-  8% {
-    opacity: 0;
-    transform: rotate(-35deg) translateX(300px);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Content stays above backgrounds */
 .starfield .chapter-body {
   position: relative;
   z-index: 1;
 }
 
-.starfield .chapter-hero {
-  position: relative;
-  z-index: 1;
+/* Starfield chapter needs different transition gradients */
+.starfield.chapter::before {
+  background: linear-gradient(to bottom, #020010, transparent);
 }
 
-.starfield .chapter-end {
-  position: relative;
-  z-index: 1;
+.starfield.chapter::after {
+  background: linear-gradient(to top, #020010, transparent);
 }
 
-/* ============ STARFIELD TEXT STYLING ============ */
-.starfield .chapter-body p {
-  color: rgba(210,215,240,0.85);
-}
-
-.starfield .drop-cap::first-letter {
-  color: #b8b0ff;
-}
-
-.starfield .section-break::before {
-  content: '✧ ✦ ✧';
-  color: rgba(180,170,255,0.4);
-}
-
-.starfield .scene-dash {
-  color: rgba(180,170,255,0.4);
-}
-
-.starfield .dramatic {
-  color: #c8bfff;
-  text-shadow: 0 0 20px rgba(200,191,255,0.15);
-}
-
-.starfield .image-break figcaption {
-  color: rgba(180,190,220,0.6);
-}
-
-.starfield .image-break:hover img {
-  box-shadow: 0 0 30px rgba(140,130,255,0.15), 0 0 60px rgba(140,130,255,0.05);
-}
-
-.starfield .image-break img {
-  border: 1px solid rgba(140,130,255,0.08);
-}
-
-.starfield .full-bleed::after {
-  background: linear-gradient(to top, rgba(5,0,24,0.5), transparent);
-}
-
-.starfield .chapter-hero .hero-bg {
-  filter: brightness(.18) saturate(.5) hue-rotate(20deg);
-}
-
-.starfield .chapter-label {
-  color: #b8b0ff;
-}
-
-.starfield .chapter-title {
-  color: rgba(220,215,255,0.95);
-  text-shadow: 0 0 40px rgba(180,170,255,0.2);
-}
-
-.starfield .chapter-hero:hover .chapter-title {
-  text-shadow: 0 0 30px rgba(180,170,255,0.4), 0 0 60px rgba(180,170,255,0.15);
-}
-
-.starfield .chapter-end {
-  color: #c8c0ff;
-}
-
+/* ============ COMET ANIMATION ============ */
 .comet-container {
   position: relative;
   width: 100%;
@@ -1435,176 +1299,6 @@ body {
   .hill-scene { height: 30vh; min-height: 220px; }
   .moon-quote p { font-size: 1.15rem; }
 }
-
-/* ============================================================ */
-/*          BONUS CHAPTER — REFINED GOLDEN STYLING             */
-/* ============================================================ */
-
-/* Warm, complementary background that matches golden text */
-#bonus {
-  background: linear-gradient(165deg, 
-    #1a1410 0%, 
-    #251d15 25%, 
-    #2d2418 50%, 
-    #251d15 75%, 
-    #1a1410 100%);
-  position: relative;
-}
-
-/* Subtle warm texture overlay */
-#bonus::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse at 30% 40%, rgba(220, 177, 91, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 60%, rgba(184, 134, 11, 0.03) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Remove starfield effects */
-#bonus .starfield-nebula,
-#bonus .starfield-stars-small,
-#bonus .starfield-stars-large,
-#bonus .shooting-stars {
-  display: none;
-}
-
-/* Normal TOC styling - no gold */
-.toc a[href="#bonus"] {
-  color: inherit !important;
-  font-weight: inherit !important;
-}
-
-/* Chapter label — subtle gold */
-#bonus .chapter-label {
-  color: #c9a165;
-  font-weight: 600;
-  letter-spacing: 0.4em;
-}
-
-/* Chapter title — refined gold with subtle shimmer */
-#bonus .chapter-title {
-  color: #dcb15b;
-  font-weight: 700;
-  text-shadow: 0 0 10px rgba(220, 177, 91, 0.12);
-  position: relative;
-  overflow: hidden;
-}
-
-#bonus .chapter-title::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -150%;
-  width: 50%;
-  height: 200%;
-  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-  animation: bonusTitleShine 5s ease-in-out infinite;
-  pointer-events: none;
-  transform: skewX(-25deg);
-}
-
-@keyframes bonusTitleShine {
-  0%   { left: -150%; }
-  12%  { left: 150%; }
-  100% { left: 150%; }
-}
-
-/* Drop cap — golden */
-#bonus .drop-cap::first-letter {
-  color: #dcb15b;
-  font-weight: 700;
-}
-
-/* Dramatic sections — golden with subtle glow */
-#bonus .dramatic-section .dramatic {
-  color: #dcb15b;
-  font-weight: 600;
-  font-style: italic;
-  line-height: 1.8;
-  text-shadow: 0 0 8px rgba(220, 177, 91, 0.08);
-}
-
-/* Whisper sections — golden */
-#bonus .whisper p {
-  color: #c9a165;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.7;
-}
-
-/* Final words bright — golden */
-#bonus .final-words .bright {
-  color: #dcb15b;
-  font-weight: 600;
-  text-shadow: 0 0 6px rgba(220, 177, 91, 0.1);
-}
-
-/* Final words dim — subtle gray */
-#bonus .final-words .dim {
-  color: #8a8074;
-  font-weight: 400;
-}
-
-/* Section breaks — golden */
-#bonus .section-break::before {
-  color: #dcb15b;
-  opacity: 0.6;
-}
-
-/* Chapter end symbol — golden */
-#bonus .chapter-end {
-  color: #dcb15b !important;
-  font-size: 2rem;
-}
-
-/* Image captions — muted gold */
-#bonus .image-break figcaption {
-  color: #a8927a;
-  font-weight: 500;
-  font-style: italic;
-}
-
-/* Image hover effect — warm glow */
-#bonus .image-break:hover img {
-  box-shadow: 0 0 25px rgba(220, 177, 91, 0.12), 0 0 50px rgba(220, 177, 91, 0.06);
-}
-
-/* Hero background — warmer tint */
-#bonus .chapter-hero .hero-bg {
-  filter: brightness(0.22) saturate(0.7) sepia(0.15);
-}
-
-/* Keep all normal text at default color */
-#bonus .chapter-body p,
-#bonus .night-text p {
-  color: inherit;
-  font-weight: inherit;
-}
-
-/* Ensure content stays above background */
-#bonus .chapter-body,
-#bonus .chapter-hero,
-#bonus .chapter-end {
-  position: relative;
-  z-index: 1;
-}
-
-/* Remove any conflicting starfield text styling */
-#bonus.starfield .chapter-body p {
-  color: var(--text);
-}
-
-#bonus.starfield .drop-cap::first-letter {
-  color: #dcb15b;
-}
-
-#bonus.starfield .dramatic {
-  color: #dcb15b;
-  text-shadow: 0 0 8px rgba(220, 177, 91, 0.08);
-}
 </style>
 </head>
 <body>
@@ -1682,7 +1376,6 @@ body {
       <li><a href="#ch6"><span class="ch-num">06</span><span class="ch-name">The Unforeseen Confession</span></a></li>
       <li><a href="#ch7"><span class="ch-num">07</span><span class="ch-name">The Day of Christmas Eve</span></a></li>
       <li><a href="#ch8"><span class="ch-num">08</span><span class="ch-name">The Day the Sky Spoke</span></a></li>
-      <li><a href="#bonus"><span class="ch-num">B</span><span class="ch-name">BONUS CHAPTER</span></a></li>
     </ul>
   </nav>
 
@@ -1695,7 +1388,7 @@ body {
            data-audio-label="Dreamy Piano">
 
     <header class="chapter-hero">
-      <img src="images/thumb-1920-690660.jpg"
+      <img src="https://images.unsplash.com/photo-1533154683220-3afaea5e2346?w=1400&q=80"
            alt="Castle corridor" class="hero-bg">
       <div class="hero-text">
         <span class="chapter-label">Chapter One</span>
@@ -1711,6 +1404,11 @@ body {
 
       <p class="anim-hidden">Above her stretched an impossibly wide sky.</p>
 
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1400&q=80"
+             alt="Vast green valley with river" loading="lazy">
+      </div>
+
       <p class="anim-hidden"><em>"Jenna…"</em></p>
 
       <p class="anim-hidden">The voice drifted through the wind.</p>
@@ -1722,7 +1420,7 @@ body {
       <p class="anim-hidden">Behind her stretched a dim corridor lit by trembling torchlight. Shadows crawled along ancient stone walls. Something about this place felt less like a dream and more like a forgotten memory — as if she had once stood here before and left something unfinished.</p>
 
       <figure class="image-break anim-hidden">
-        <img src="images/hogwarts aesthetic.jpg"
+        <img src="https://images.unsplash.com/photo-1590274853856-f22d5ee3d228?w=900&q=80"
              alt="Dim stone corridor" loading="lazy">
         <figcaption>Something about this place felt less like a dream</figcaption>
       </figure>
@@ -1759,6 +1457,12 @@ body {
       <p class="anim-hidden">Jenna woke with a sharp inhale.</p>
 
       <p class="anim-hidden">The castle ceiling dissolved into the familiar white of her bedroom. Morning light spilled lazily through the curtains, warming the floor in uneven stripes.</p>
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?w=900&q=80"
+             alt="Morning sunlight through curtains" loading="lazy">
+        <figcaption>Morning light spilled lazily through the curtains</figcaption>
+      </figure>
 
       <p class="anim-hidden">She pressed her palm against her forehead and groaned.</p>
 
@@ -1835,6 +1539,12 @@ body {
 
       <p class="anim-hidden">"Did you guys see the game last night? The way Stephen Curry hit those three-pointers — it wasn't even shooting, it was like <em>performance art</em>. Every shot looked inevitable. Like the ball already knew where it was going."</p>
 
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=900&q=80"
+             alt="Students at school" loading="lazy">
+        <figcaption>First day of high school</figcaption>
+      </figure>
+
       <p class="anim-hidden">Her voice carried easily across the bus.</p>
 
       <div class="section-break"></div>
@@ -1891,6 +1601,10 @@ body {
 
       <p class="anim-hidden">Up close he looked composed — hair neatly combed, shirt perfectly ironed, a tie hanging straight down his collar as if he had carefully prepared for the day.</p>
 
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c476?w=900&q=80"
+             alt="Sunlit hallway" loading="lazy">
+      </figure>
 
       <p class="anim-hidden">"I don't think phones are allowed for students," he said.</p>
 
@@ -1925,21 +1639,22 @@ body {
 
     <div class="chapter-end">✦</div>
   </article>
+## Part 3 of 4 (Chapters 2–6)
 
+```html
   <!-- ============================================================ -->
   <!--              CHAPTER 2 — THE FATED MEETINGS                   -->
   <!-- ============================================================ -->
-  
-<div class="audio-shift"
-           data-audio="audio/sigmamusicart-new-year-456464.mp3"
-           data-audio-label="New Connections"
-           data-crossfade="2"></div>
+  <article class="chapter" id="ch2"
+           data-audio="audio/classroom-morning.mp3"
+           data-audio-label="Classroom Morning">
+
     <header class="chapter-hero">
       <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1400&q=80"
            alt="Bright classroom with morning light" class="hero-bg">
       <div class="hero-text">
         <span class="chapter-label">Chapter Two</span>
-        <h1 class="chapter-title">The Fated Meeting</h1>
+        <h1 class="chapter-title">The Fated Meetings</h1>
       </div>
     </header>
 
@@ -1949,7 +1664,11 @@ body {
 
       <p class="anim-hidden">Students shuffled into their seats while quiet conversations filled the room. Chairs scraped against the floor, backpacks slid beneath desks, and the low hum of first-week uncertainty hung in the air.</p>
 
-      
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=900&q=80"
+             alt="Bright classroom with desks and morning light" loading="lazy">
+        <figcaption>The low hum of first-week uncertainty hung in the air</figcaption>
+      </figure>
 
       <p class="anim-hidden">"Jenna."</p>
 
@@ -1966,7 +1685,10 @@ body {
         </p>
       </div>
 
-      
+      <div class="audio-shift"
+           data-audio="audio/phone-chime.mp3"
+           data-audio-label="New Connections"
+           data-crossfade="2"></div>
 
       <p class="anim-hidden">Jenna stretched slightly before stepping away from her desk and turning toward the rows of unfamiliar faces. If high school meant new beginnings, she intended to greet it properly.</p>
 
@@ -2048,11 +1770,9 @@ body {
       <p class="anim-hidden">A faint dimple appeared on her cheek.</p>
 
       <div class="section-break"></div>
-      
-    
 
       <div class="audio-shift"
-           data-audio="audio/Bells.mp3"
+           data-audio="audio/church-bells.mp3"
            data-audio-label="Church Bells"
            data-crossfade="2"></div>
 
@@ -2070,7 +1790,7 @@ body {
       <p class="anim-hidden">But the sound lingered in Jade's mind differently.</p>
 
       <figure class="image-break anim-hidden">
-        <img src="images/anime-artistic-image-white-petals-600nw-2678923865.webp"
+        <img src="https://images.unsplash.com/photo-1507692049790-de58290a4334?w=900&q=80"
              alt="Golden light through an arched window" loading="lazy">
         <figcaption>Like the bells of old churches</figcaption>
       </figure>
@@ -2093,13 +1813,17 @@ body {
       <div class="scene-dash anim-hidden">—</div>
 
       <div class="audio-shift"
-           data-audio="audio/tvari-tvari-tokyo-cafe-159065.mp3"
+           data-audio="audio/cafeteria-vibes.mp3"
            data-audio-label="Cafeteria Vibes"
            data-crossfade="2"></div>
 
       <p class="anim-hidden">The cafeteria buzzed with energy.</p>
 
-     
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80"
+             alt="Busy cafeteria with students" loading="lazy">
+        <figcaption>The cafeteria buzzed with energy</figcaption>
+      </figure>
 
       <p class="anim-hidden">Jade stepped inside slowly and glanced toward the food counter. Today's menu was written neatly across a digital board.</p>
 
@@ -2110,12 +1834,6 @@ body {
         <p>Coleslaw</p>
         <p class="menu-special">Queen's Apple Tart</p>
       </div>
-
-      <figure class="image-break anim-hidden">
-        <img src="images/952fec9cd1383cfa358280a0d8f7cf08.jpg"
-             alt="Queen's Apple Tart" loading="lazy">
-             <figcaption>Queen's Apple Tart</figcaption>
-      </figure>
 
       <p class="anim-hidden">He read the list while holding his stomach.</p>
 
@@ -2150,7 +1868,12 @@ body {
 
       <p class="anim-hidden">A tower of desserts.</p>
 
-      
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1568571934838-0cb471d4e4ae?w=900&q=80"
+             alt="Beautiful apple tart with golden pastry" loading="lazy">
+        <figcaption>A tower of Queen's Apple Tarts</figcaption>
+      </figure>
+
       <p class="anim-hidden">Jenna gently pressed them down with her fork before beginning to eat.</p>
 
       <div class="eating-sequence anim-hidden">
@@ -2172,7 +1895,13 @@ body {
 
       <p class="anim-hidden"><em>How was she eating that many?</em></p>
 
-     
+      <div class="section-break"></div>
+
+      <div class="audio-shift"
+           data-audio="audio/small-kindness.mp3"
+           data-audio-label="Small Kindness"
+           data-crossfade="3"></div>
+
       <p class="anim-hidden">Across the table Jenna finished the last bite and looked down at her plate.</p>
 
       <p class="anim-hidden">Empty.</p>
@@ -2217,168 +1946,212 @@ body {
 
 
   <!-- ============================================================ -->
-<!--            CHAPTER 3 — THE GODDESS AT THE WINDOW              -->
-<!-- ============================================================ -->
-<article class="chapter" id="ch3"
-         data-audio="audio/musicword-golden-time-327603.mp3"
-         data-audio-label="Golden Hallway">
+  <!--            CHAPTER 3 — THE GODDESS AT THE WINDOW              -->
+  <!-- ============================================================ -->
+  <article class="chapter" id="ch3"
+           data-audio="audio/empty-desk.mp3"
+           data-audio-label="Empty Desk">
 
-  <header class="chapter-hero">
-    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80"
-         alt="Golden afternoon light streaming through tall windows" class="hero-bg">
-    <div class="hero-text">
-      <span class="chapter-label">Chapter Three</span>
-      <h1 class="chapter-title">The Goddess at the Window</h1>
+    <header class="chapter-hero">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=80"
+           alt="Golden afternoon light streaming through tall windows" class="hero-bg">
+      <div class="hero-text">
+        <span class="chapter-label">Chapter Three</span>
+        <h1 class="chapter-title">The Goddess at the Window</h1>
+      </div>
+    </header>
+
+    <div class="chapter-body">
+
+      <p class="drop-cap anim-hidden">The classroom felt unusually quiet that afternoon.</p>
+
+      <p class="anim-hidden">A few desks remained empty.</p>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">One of them was Jenna's.</p>
+      </div>
+
+      <p class="anim-hidden">Jade noticed it almost immediately. At first, he tried to ignore it. Students around him whispered about homework, upcoming assignments, and the usual trivial things that filled a school day. He leaned slightly forward in his seat, pretending to read while listening carefully to the scattered conversations around him.</p>
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80"
+             alt="Empty classroom desk bathed in afternoon light" loading="lazy">
+        <figcaption>A few desks remained empty</figcaption>
+      </figure>
+
+      <p class="anim-hidden"><em>Maybe someone would mention where she was.</em></p>
+
+      <p class="anim-hidden">He tried to overhear something — anything.</p>
+
+      <p class="anim-hidden">But nothing came.</p>
+
+      <p class="anim-hidden">No one seemed particularly concerned.</p>
+
+      <p class="anim-hidden">A faint restlessness settled inside him.</p>
+
+      <p class="anim-hidden">Finally, one student casually mentioned that Jenna had gone to the infirmary earlier because she wasn't feeling well. That was all.</p>
+
+      <p class="anim-hidden">The teacher continued the lesson, but Jade found it harder to concentrate. His thoughts drifted again and again toward the empty desk.</p>
+
+      <div class="section-break"></div>
+
+      <div class="audio-shift"
+           data-audio="audio/golden-hallway.mp3"
+           data-audio-label="Golden Hallway"
+           data-crossfade="3"></div>
+
+      <p class="anim-hidden">After class ended, he stepped outside.</p>
+
+      <p class="anim-hidden">The hallway was quiet now, washed in the warm gold of late afternoon sunlight.</p>
+
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1400&q=80"
+             alt="Long hallway bathed in warm golden afternoon light" loading="lazy">
+      </div>
+
+      <p class="anim-hidden">And that was when he saw her.</p>
+
+      <div class="section-break"></div>
+
+      <div class="audio-shift"
+           data-audio="audio/goddess-moment.mp3"
+           data-audio-label="The Goddess"
+           data-crossfade="3.5"></div>
+
+      <p class="anim-hidden">Jenna stood near a large window at the end of the corridor.</p>
+
+      <p class="anim-hidden">For a moment, Jade stopped walking.</p>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">
+          Everything else faded.<br><br>
+          Students passing by,<br>
+          distant conversations,<br>
+          the echo of footsteps —<br><br>
+          all of it blurred into the background.
+        </p>
+      </div>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">
+          She became the only thing in focus.
+        </p>
+      </div>
+
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=1400&q=80"
+             alt="Girl standing by a large window bathed in golden light" loading="lazy">
+      </div>
+
+      <p class="anim-hidden">A gentle breeze slipped through the half-open window, brushing against her hair. Strands lifted softly and separated, drifting around her face like delicate threads of light, as if the quiet secrets of the world had chosen that moment to reveal themselves.</p>
+
+      <p class="anim-hidden">The sunlight touched her gently, reflecting in her eyes and along the edges of her hair, giving them a soft glow. Her hair seemed to twinkle like stars scattered across a calm night sky, each tiny strand catching the light in fleeting, perfect sparks. To Jade, her eyes looked almost luminous — like a golden star that had been quietly hiding there all along.</p>
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=900&q=80"
+             alt="Warm golden light illuminating hair like threads of light" loading="lazy">
+        <figcaption>Like a golden star that had been quietly hiding there all along</figcaption>
+      </figure>
+
+      <p class="anim-hidden">Without realizing it, his gaze memorized every small detail of her face: the gentle curve of her brow, the soft bloom of sunlight along her nose, the subtle lift of her lips that hinted at countless untold stories.</p>
+
+      <p class="anim-hidden">Everything about her felt impossibly precise.</p>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">Impossibly perfect.</p>
+      </div>
+
+      <p class="anim-hidden">And before he could stop himself, a word escaped his mouth.</p>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic" style="font-size: 1.8rem;">
+          "Beautiful."
+        </p>
+      </div>
+
+      <p class="anim-hidden">The word was soft. Almost a whisper.</p>
+
+      <div class="section-break"></div>
+
+      <div class="audio-shift"
+           data-audio="audio/heartbeat-panic.mp3"
+           data-audio-label="Heartbeat"
+           data-crossfade="1.5"></div>
+
+      <p class="anim-hidden">Jenna turned her head slightly, searching the hallway.</p>
+
+      <p class="anim-hidden">She didn't call out. She didn't notice him.</p>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">
+          Jade's heart jumped violently in his chest.
+        </p>
+      </div>
+
+      <p class="anim-hidden">He stepped back quickly, disappearing behind the wall beside the corridor.</p>
+
+      <p class="anim-hidden">A sudden wave of panic rushed through him. His throat tightened, choking off any sound that might betray him. It felt as though the air itself had grown thick, leaving no space for words.</p>
+
+      <p class="anim-hidden">For a few seconds, he simply stood there, pressed against the wall, breathing quietly and hoping she wouldn't notice him.</p>
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?w=900&q=80"
+             alt="Figure pressed against a corridor wall in afternoon shadow" loading="lazy">
+        <figcaption>Pressed against the wall, breathing quietly</figcaption>
+      </figure>
+
+      <div class="section-break"></div>
+
+      <div class="audio-shift"
+           data-audio="audio/dimmer-now.mp3"
+           data-audio-label="Dimmer Now"
+           data-crossfade="2.5"></div>
+
+      <p class="anim-hidden">A moment later, footsteps approached Jenna. One of her friends walked up beside her.</p>
+
+      <p class="anim-hidden">"What happened to you? I heard you went to the infirmary."</p>
+
+      <p class="anim-hidden">Jenna shrugged lightly.</p>
+
+      <p class="anim-hidden">"It was just a stomach ache," she said, brushing it off with an easy smile.</p>
+
+      <p class="anim-hidden">Then she pushed herself away from the window.</p>
+
+      <p class="anim-hidden">"Come on. Let's go back to class, shall we?"</p>
+
+      <p class="anim-hidden">They walked down the hallway together.</p>
+
+      <div class="section-break"></div>
+
+      <p class="anim-hidden">Jade remained where he was for another moment, staring at the empty space where she had been standing.</p>
+
+      <p class="anim-hidden">The sunlight still rested on the windowsill.</p>
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1495571758719-6ec1e876d6ae?w=900&q=80"
+             alt="Empty window with golden sunlight resting on the sill" loading="lazy">
+        <figcaption>The sunlight still rested on the windowsill</figcaption>
+      </figure>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">
+          But somehow<br>
+          the hallway felt dimmer now.
+        </p>
+      </div>
+
     </div>
-  </header>
 
-  <div class="chapter-body">
+    <div class="chapter-end">✦</div>
+  </article>
 
-    <p class="drop-cap anim-hidden">The classroom felt unusually quiet that afternoon.</p>
-
-    <p class="anim-hidden">A few desks remained empty.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">One of them was Jenna's.</p>
-    </div>
-
-    <p class="anim-hidden">Jade noticed it almost immediately. At first, he tried to ignore it. Students around him whispered about homework, upcoming assignments, and the usual trivial things that filled a school day. He leaned slightly forward in his seat, pretending to read while listening carefully to the scattered conversations around him.</p>
-
-    <p class="anim-hidden"><em>Maybe someone would mention where she was.</em></p>
-
-    <p class="anim-hidden">He tried to overhear something — anything.</p>
-
-    <p class="anim-hidden">But nothing came.</p>
-
-    <p class="anim-hidden">No one seemed particularly concerned.</p>
-
-    <p class="anim-hidden">A faint restlessness settled inside him.</p>
-
-    <p class="anim-hidden">Finally, one student casually mentioned that Jenna had gone to the infirmary earlier because she wasn't feeling well. That was all.</p>
-
-    <p class="anim-hidden">The teacher continued the lesson, but Jade found it harder to concentrate. His thoughts drifted again and again toward the empty desk.</p>
-
-    <div class="section-break"></div>
-
-    <p class="anim-hidden">After class ended, he stepped outside.</p>
-
-    <p class="anim-hidden">The hallway was quiet now, washed in the warm gold of late afternoon sunlight.</p>
-
-    <p class="anim-hidden">And that was when he saw her.</p>
-
-    <div class="section-break"></div>
-
-    <p class="anim-hidden">Jenna stood near a large window at the end of the corridor.</p>
-
-    <p class="anim-hidden">For a moment, Jade stopped walking.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        Everything else faded.<br><br>
-        Students passing by,<br>
-        distant conversations,<br>
-        the echo of footsteps —<br><br>
-        all of it blurred into the background.
-      </p>
-    </div>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        She became the only thing in focus.
-      </p>
-    </div>
-
-    <p class="anim-hidden">A gentle breeze slipped through the half-open window, brushing against her hair. Strands lifted softly and separated, drifting around her face like delicate threads of light, as if the quiet secrets of the world had chosen that moment to reveal themselves.</p>
-
-    <p class="anim-hidden">The sunlight touched her gently, reflecting in her eyes and along the edges of her hair, giving them a soft glow. Her hair seemed to twinkle like stars scattered across a calm night sky, each tiny strand catching the light in fleeting, perfect sparks. To Jade, her eyes looked almost luminous — like a golden star that had been quietly hiding there all along.</p>
-
-    <figure class="image-break anim-hidden">
-      <img src="images/woman-stands-front-window-with-sun-setting-her_851826-462.avif"
-           alt="Warm golden light illuminating hair like threads of light" loading="lazy">
-      <figcaption>Like a golden star that had been quietly hiding there all along</figcaption>
-    </figure>
-
-    <p class="anim-hidden">Without realizing it, his gaze memorized every small detail of her face: the gentle curve of her brow, the soft bloom of sunlight along her nose, the subtle lift of her lips that hinted at countless untold stories.</p>
-
-    <p class="anim-hidden">Everything about her felt impossibly precise.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">Impossibly perfect.</p>
-    </div>
-
-    <p class="anim-hidden">And before he could stop himself, a word escaped his mouth.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic" style="font-size: 1.8rem;">
-        "Beautiful."
-      </p>
-    </div>
-
-    <p class="anim-hidden">The word was soft. Almost a whisper.</p>
-
-    <div class="section-break"></div>
-
-    <div class="audio-shift"
-         data-audio="audio/heartbeat-panic.mp3"
-         data-audio-label="Heartbeat"
-         data-crossfade="1.5"></div>
-
-    <p class="anim-hidden">Jenna turned her head slightly, searching the hallway.</p>
-
-    <p class="anim-hidden">She didn't call out. She didn't notice him.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        Jade's heart jumped violently in his chest.
-      </p>
-    </div>
-
-    <p class="anim-hidden">He stepped back quickly, disappearing behind the wall beside the corridor.</p>
-
-    <p class="anim-hidden">A sudden wave of panic rushed through him. His throat tightened, choking off any sound that might betray him. It felt as though the air itself had grown thick, leaving no space for words.</p>
-
-    <p class="anim-hidden">For a few seconds, he simply stood there, pressed against the wall, breathing quietly and hoping she wouldn't notice him.</p>
-
-    <div class="section-break"></div>
-
-    <p class="anim-hidden">A moment later, footsteps approached Jenna. One of her friends walked up beside her.</p>
-
-    <p class="anim-hidden">"What happened to you? I heard you went to the infirmary."</p>
-
-    <p class="anim-hidden">Jenna shrugged lightly.</p>
-
-    <p class="anim-hidden">"It was just a stomach ache," she said, brushing it off with an easy smile.</p>
-
-    <p class="anim-hidden">Then she pushed herself away from the window.</p>
-
-    <p class="anim-hidden">"Come on. Let's go back to class, shall we?"</p>
-
-    <p class="anim-hidden">They walked down the hallway together.</p>
-
-    <div class="section-break"></div>
-
-    <p class="anim-hidden">Jade remained where he was for another moment, staring at the empty space where she had been standing.</p>
-
-    <p class="anim-hidden">The sunlight still rested on the windowsill.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        But somehow<br>
-        the hallway felt dimmer now.
-      </p>
-    </div>
-
-  </div>
-
-  <div class="chapter-end">✦</div>
-</article>
 
   <!-- ============================================================ -->
   <!--             CHAPTER 4 — TWILIGHT CONVERSATIONS                -->
   <!-- ============================================================ -->
   <article class="chapter" id="ch4"
-           data-audio="audio\sounovamusic-where-we-belong-acoustic-pop-419789.mp3"
-           data-audio-label="home again">
+           data-audio="audio/home-again.mp3"
+           data-audio-label="Home Again">
 
     <header class="chapter-hero">
       <img src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=1400&q=80"
@@ -2436,7 +2209,11 @@ body {
 
       <p class="anim-hidden">Stepping into the small garden behind her house, she moved from plant to plant, watering each carefully.</p>
 
-      
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80"
+             alt="Small garden with green plants in warm evening light" loading="lazy">
+        <figcaption>She moved from plant to plant, watering each carefully</figcaption>
+      </figure>
 
       <p class="anim-hidden">"How are you doing today?" she asked one softly, tilting her head as if waiting for an answer.</p>
 
@@ -2463,7 +2240,11 @@ body {
 
       <p class="anim-hidden">She stood quietly, her head tilted upward, gazing into the open sky. The horizon stretched endlessly, where the deep blue above seemed to melt into the earth below. For a moment, it felt as if she were inside a perfect globe, and the curve of the earth beneath her eyes revealed how vast and round the world truly was.</p>
 
-      
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1532978379173-c9c6acbc4f81?w=1400&q=80"
+             alt="Vast open sky at blue hour stretching to the horizon" loading="lazy">
+      </div>
+
       <p class="anim-hidden">She often wondered how people had once believed the earth was flat. The sky was far too immense for that.</p>
 
       <p class="anim-hidden">Jenna wandered slowly across the terrace, watching the faint shapes drifting across her vision — the little floaters that danced across her sight whenever she stared too long at the open sky.</p>
@@ -2493,7 +2274,10 @@ body {
         </p>
       </div>
 
-     
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1593085260707-5377ba37f868?w=1400&q=80"
+             alt="Silhouettes of bats flying across a twilight sky" loading="lazy">
+      </div>
 
       <p class="anim-hidden">A vast herd of bats swept across the twilight, their wings slicing silently through the air as they began their evening emergence flight. To Jenna, it looked as if there were thousands of them, moving together like a living cloud that twisted and turned with the fading light.</p>
 
@@ -2514,7 +2298,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/daynigthmorning-sunset-farewell-calm-beautiful-piano-304549.mp3"
+           data-audio="audio/sunset-farewell.mp3"
            data-audio-label="Sunset Farewell"
            data-crossfade="3.5"></div>
 
@@ -2524,10 +2308,10 @@ body {
 
       <p class="anim-hidden">Then grey.</p>
 
-      <figure class="image-break anim-hidden">
-        <img src="images\th.jpg"
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?w=1400&q=80"
              alt="Brilliant orange sunset melting into the horizon" loading="lazy">
-      </figure>
+      </div>
 
       <p class="anim-hidden">As twilight began to steal the heat away, Jenna looked toward the horizon where the sun hovered for its final moments. She folded her arms loosely and whispered softly,</p>
 
@@ -2541,7 +2325,12 @@ body {
       <p class="anim-hidden">A small smile touched her lips.</p>
 
       <p class="anim-hidden">"Thank you for showing up every day."</p>
->
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=900&q=80"
+             alt="Last sliver of sunlight disappearing below the horizon" loading="lazy">
+        <figcaption>Thank you for showing up every day</figcaption>
+      </figure>
 
       <p class="anim-hidden">The sun slipped away.</p>
 
@@ -2565,7 +2354,7 @@ body {
   <!--               CHAPTER 5 — THE LOST PENDANT                   -->
   <!-- ============================================================ -->
   <article class="chapter" id="ch5"
-           data-audio="audio\vowelicious-note-to-say-good-bye-221567.mp3"
+           data-audio="audio/something-missing.mp3"
            data-audio-label="Something Missing">
 
     <header class="chapter-hero">
@@ -2608,7 +2397,7 @@ body {
       <p class="anim-hidden">Her mother had given it to her years ago — on a day Jenna remembered clearly. Since then, she had worn it almost every day.</p>
 
       <figure class="image-break anim-hidden">
-        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80"
+        <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=900&q=80"
              alt="Hand touching an empty collarbone where a necklace should be" loading="lazy">
         <figcaption>It felt like a small piece of home she carried wherever she went</figcaption>
       </figure>
@@ -2659,7 +2448,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/musicword-in-search-of-393046.mp3"
+           data-audio="audio/desperate-search.mp3"
            data-audio-label="The Search"
            data-crossfade="2.5"></div>
 
@@ -2675,7 +2464,11 @@ body {
 
       <p class="anim-hidden">Even the smallest grains of sand didn't escape her sight.</p>
 
-     
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1476900966873-ab290e38e3f7?w=1400&q=80"
+             alt="Solitary figure walking down a long road at golden hour" loading="lazy">
+      </div>
+
       <p class="anim-hidden">Minutes passed.</p>
 
       <p class="anim-hidden">Then an hour.</p>
@@ -2726,7 +2519,11 @@ body {
 
       <p class="anim-hidden">For a moment they stood there in silence.</p>
 
-      
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=900&q=80"
+             alt="Two figures standing in quiet tension on an evening road" loading="lazy">
+        <figcaption>For a moment they stood there in silence</figcaption>
+      </figure>
 
       <p class="anim-hidden">Jenna slowly looked back at him.</p>
 
@@ -2773,7 +2570,7 @@ body {
       <p class="anim-hidden">The campus was nearly empty now.</p>
 
       <figure class="image-break anim-hidden">
-        <img src="images\04ffb96016eaba8635718f0f85bbbb99.jpg"
+        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80"
              alt="Empty school corridor with dim evening light" loading="lazy">
         <figcaption>The campus was nearly empty now</figcaption>
       </figure>
@@ -2803,7 +2600,7 @@ body {
       <p class="anim-hidden">Then —</p>
 
       <div class="audio-shift"
-           data-audio="audio/rensinghanse-lost-and-found-117754.mp3"
+           data-audio="audio/pendant-found.mp3"
            data-audio-label="Found"
            data-crossfade="2"></div>
 
@@ -2814,6 +2611,11 @@ body {
         </p>
       </div>
 
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80"
+             alt="Small silver pendant catching the last rays of evening light" loading="lazy">
+        <figcaption>A small silver pendant</figcaption>
+      </figure>
 
       <p class="anim-hidden">A small silver pendant.</p>
 
@@ -2843,7 +2645,11 @@ body {
 
       <p class="anim-hidden">He finally spotted her sitting alone in a park, the swing moving slightly in the evening breeze. Her head was lowered, tears falling silently onto the ground.</p>
 
-     
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=900&q=80"
+             alt="Empty park swing in the soft light of dusk" loading="lazy">
+        <figcaption>The swing moved slightly in the evening breeze</figcaption>
+      </figure>
 
       <p class="anim-hidden">He stopped in front of her, bending slightly to hold out his hand.</p>
 
@@ -2878,7 +2684,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/top-flow-jingle-family-174542.mp3"
+           data-audio="audio/family-warmth.mp3"
            data-audio-label="Family Warmth"
            data-crossfade="2.5"></div>
 
@@ -2888,7 +2694,11 @@ body {
 
       <p class="anim-hidden">"I found it," she said, still sniffling.</p>
 
-      
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=900&q=80"
+             alt="Warm family embrace in soft golden evening light" loading="lazy">
+        <figcaption>"I found it"</figcaption>
+      </figure>
 
       <p class="anim-hidden">Her father smiled gently.</p>
 
@@ -2927,7 +2737,7 @@ body {
   <!--            CHAPTER 6 — THE UNFORESEEN CONFESSION              -->
   <!-- ============================================================ -->
   <article class="chapter" id="ch6"
-           data-audio="audio/jackcatorbooks-evening-unwind-446837.mp3"
+           data-audio="audio/cozy-evening.mp3"
            data-audio-label="Cozy Evening">
 
     <header class="chapter-hero">
@@ -2971,7 +2781,7 @@ body {
       </div>
 
       <div class="audio-shift"
-           data-audio="audio/romansenykmusic-a-curious-discovery-243799.mp3"
+           data-audio="audio/flutter.mp3"
            data-audio-label="A Flutter"
            data-crossfade="2"></div>
 
@@ -3001,7 +2811,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio\diff_style-nervous-waves-266910.mp3"
+           data-audio="audio/nervous-jade.mp3"
            data-audio-label="Nervous"
            data-crossfade="2"></div>
 
@@ -3026,7 +2836,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio\solarflex-jazz-cafe-music-509921.mp3"
+           data-audio="audio/cafe-laughter.mp3"
            data-audio-label="Café Laughter"
            data-crossfade="2.5"></div>
 
@@ -3035,9 +2845,9 @@ body {
       <p class="anim-hidden">She was sitting at a table surrounded by empty cake boxes. Not one. Not two. At least six. It looked like someone had eaten an entire year's worth of desserts.</p>
 
       <figure class="image-break anim-hidden">
-        <img src="images/download.jpg"
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80"
              alt="Table covered in dessert plates and cake boxes" loading="lazy">
-        <figcaption>At least six cakes</figcaption>
+        <figcaption>At least six cake boxes</figcaption>
       </figure>
 
       <p class="anim-hidden">Jade slowly walked over and sat across from her.</p>
@@ -3058,7 +2868,12 @@ body {
 
       <p class="anim-hidden">She laughed, and just like that, the atmosphere became comfortable. They talked about school, sports, games, and random stories. Time passed quickly.</p>
 
-    
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1525258946800-98cbe595c206?w=900&q=80"
+             alt="Two people laughing together at a warm café table" loading="lazy">
+        <figcaption>Time passed quickly</figcaption>
+      </figure>
+
       <p class="anim-hidden">At one point, Jenna gently touched the pendant around her neck.</p>
 
       <p class="anim-hidden">"By the way… I never properly thanked you for finding this," she said softly.</p>
@@ -3103,13 +2918,16 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio\musicword-delighted-238952.mp3"
+           data-audio="audio/confession.mp3"
            data-audio-label="Confession"
            data-crossfade="3.5"></div>
 
       <p class="anim-hidden">Eventually, they finished their food and stepped outside together. The evening air felt calm. They walked slowly down the quiet street.</p>
 
-      
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1400&q=80"
+             alt="Two figures walking together down a quiet evening street" loading="lazy">
+      </div>
 
       <p class="anim-hidden">After a moment, Jenna suddenly asked,</p>
 
@@ -3171,56 +2989,37 @@ body {
         You don't have to carry it alone."
       </div>
 
-     <p class="anim-hidden">The evening air moved gently around them as they walked. Jade's hands stayed steady, relaxed at his sides, but his presence itself felt grounding.</p>
+      <p class="anim-hidden">The evening air moved gently around them as they walked. Jade's hands stayed steady, relaxed at his sides, but his presence itself felt grounding.</p>
 
-<div class="promise anim-hidden">
-  "If the path ahead ever feels uncertain…
-  or if you find yourself hesitating
-  because you're not sure what to do —
-  then rely on me."
-</div>
+      <div class="promise anim-hidden">
+        "If the path ahead ever feels uncertain…
+        or if you find yourself hesitating
+        because you're not sure what to do —
+        then rely on me."
+      </div>
 
-<p class="anim-hidden">Another small pause followed, natural and unforced, as though the world itself had quieted to listen.</p>
+      <p class="anim-hidden">Another small pause followed, natural and unforced.</p>
 
-<div class="promise anim-hidden">
-  "Trust me with the things you're unsure about.
-  I might not always have the perfect answer —
-  but I'll stand with you while you figure it out."
-</div>
+      <div class="promise anim-hidden">
+        "Trust me with the things you're unsure about.
+        I might not always have the perfect answer —
+        but I'll stand with you while you figure it out."
+      </div>
 
-<p class="anim-hidden">He fell silent for a moment, as if weighing something too fragile to speak carelessly. When he finally continued, his voice had softened into something deeper, gentler — a quiet vow given shape.</p>
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=900&q=80"
+             alt="Two silhouettes standing close together against the evening sky" loading="lazy">
+      </figure>
 
-<div class="promise anim-hidden">
-  "And even if someday the distance between us becomes too great…
-  even if time itself tries to pull us apart —"
-</div>
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic" style="font-size: 1.5rem;">
+          "So… trust me."
+        </p>
+      </div>
 
-<p class="anim-hidden">His fingers closed a little more firmly around hers, not enough to hurt, only enough to make the feeling undeniable.</p>
+      <p class="anim-hidden">Jenna's lips curved into a soft smile.</p>
 
-<div class="promise anim-hidden">
-  "I'll still find my way back to you.
-  I'll search for the smallest traces of you —
-  in every lifetime,
-  in every world,
-  in every version of forever."
-</div>
-
-<figure class="image-break anim-hidden">
-  <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=900&q=80"
-       alt="Two silhouettes standing close together against the evening sky" loading="lazy">
-</figure>
-
-<div class="dramatic-section anim-hidden">
-  <p class="dramatic" style="font-size: 1.5rem;">
-    "So… trust me."
-  </p>
-</div>
-
-<p class="anim-hidden">Jenna's lips curved into a soft smile.</p>
-
-<p class="anim-hidden">Although she was usually cheerful and outgoing, there were quiet moments when she felt strangely empty when she was alone. But somehow, when she was with him, that feeling disappeared without effort.</p>
-
-      
+      <p class="anim-hidden">Although she was usually cheerful and outgoing, there were quiet moments when she felt strangely empty when she was alone. But somehow, when she was with him, that feeling disappeared without effort.</p>
 
       <div class="dramatic-section anim-hidden">
         <p class="dramatic">
@@ -3244,6 +3043,11 @@ body {
 
       <p class="anim-hidden">The smile was small, but it carried a warmth he hadn't seen before.</p>
 
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=900&q=80"
+             alt="Warm living room glow, someone smiling softly at their phone" loading="lazy">
+        <figcaption>The smile was small, but it carried a warmth he hadn't seen before</figcaption>
+      </figure>
 
       <p class="anim-hidden">Subtle.</p>
 
@@ -3267,7 +3071,7 @@ body {
   <!--            CHAPTER 7 — THE DAY OF CHRISTMAS EVE               -->
   <!-- ============================================================ -->
   <article class="chapter" id="ch7"
-           data-audio="audio\nikitakondrashev-christmas-440431.mp3"
+           data-audio="audio/christmas-streets.mp3"
            data-audio-label="Christmas Eve">
 
     <header class="chapter-hero">
@@ -3285,11 +3089,10 @@ body {
 
       <p class="anim-hidden">The streets were filled with people strolling along the sidewalks, admiring brightly decorated shop windows and Christmas displays. Red ribbons, glowing lights, and festive music filled the air.</p>
 
-      <figure class="image-break anim-hidden">
-        <img src="images\1.webp"
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1512389142860-9c449e58a814?w=1400&q=80"
              alt="Brightly decorated Christmas shop windows glowing at night" loading="lazy">
-             <figcaption>Christmas Eve had wrapped the entire city in warmth and light</figcaption>
-      </figure>
+      </div>
 
       <p class="anim-hidden">Families walked together, stopping at restaurants to enjoy dinner and celebrate the evening.</p>
 
@@ -3332,7 +3135,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio\clavier-music-carol-of-the-bells-christmas-piano-music-233788.mp3"
+           data-audio="audio/family-meeting.mp3"
            data-audio-label="Meeting the Family"
            data-crossfade="2.5"></div>
 
@@ -3475,7 +3278,10 @@ body {
         "The time I spend with her helps me notice things I used to ignore because I believed they weren't meant for me."
       </div>
 
-    
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80"
+             alt="Young man speaking with quiet honesty in warm light" loading="lazy">
+      </figure>
 
       <div class="speech anim-hidden">
         "She's like a doctor who heals my soul."
@@ -3572,7 +3378,12 @@ body {
 
       <p class="anim-hidden">"Oh, nothing important."</p>
 
-      
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1543934638-bd2e138430c4?w=900&q=80"
+             alt="Warm dinner table with people laughing in Christmas light" loading="lazy">
+        <figcaption>The dinner continued with laughter and stories</figcaption>
+      </figure>
+
       <p class="anim-hidden">Soon the food arrived, and the dinner continued with laughter and stories.</p>
 
       <p class="anim-hidden">The restaurant buzzed with cheerful Christmas energy as they enjoyed the evening together.</p>
@@ -3594,528 +3405,272 @@ body {
 
 
   <!-- ============================================================ -->
-<!--          CHAPTER 8 — THE DAY THE SKY SPOKE                   -->
-<!-- ============================================================ -->
-<article class="chapter starfield" id="ch8"
-         data-audio="audio/alanajordan-backroads-and-promises-389467.mp3"
-         data-audio-label="Moonlight Promise">
+  <!--          CHAPTER 8 — THE DAY THE SKY SPOKE                   -->
+  <!-- ============================================================ -->
+  <article class="chapter starfield" id="ch8"
+           data-audio="audio/broadcast.mp3"
+           data-audio-label="The Broadcast">
 
-    <div class="audio-shift"
-         data-audio="audio/alanajordan-backroads-and-promises-389467.mp3"
-         data-audio-label="Moonlight Promise"
-         data-crossfade="3"></div>
+    <header class="chapter-hero">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1400&q=80"
+           alt="Vast night sky filled with stars above a mountain silhouette" class="hero-bg">
+      <div class="hero-text">
+        <span class="chapter-label">Chapter Eight</span>
+        <h1 class="chapter-title">The Day the Sky Spoke</h1>
+      </div>
+    </header>
 
-  <!-- Starfield background layers -->
-  <div class="starfield-nebula"></div>
-  <div class="starfield-stars-small"></div>
-  <div class="starfield-stars-large"></div>
-  <div class="shooting-stars" id="shooting-stars"></div>
+    <div class="chapter-body">
 
-  <header class="chapter-hero">
-    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1400&q=80"
-         alt="Vast night sky filled with stars above a mountain silhouette" class="hero-bg">
-    <div class="hero-text">
-      <span class="chapter-label">Chapter Eight</span>
-      <h1 class="chapter-title">The Day the Sky Spoke</h1>
-    </div>
-  </header>
+      <p class="drop-cap anim-hidden">That evening, televisions around the world were tuned to the same broadcast. Scientists and news reporters spoke excitedly about a rare astronomical event — Halley's Comet. An icy traveler from the depths of space that appeared only once every seventy-six years. For many people alive today, this would be the only time in their lifetime they would ever see it.</p>
 
-  <div class="chapter-body">
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&q=80"
+             alt="Television showing a space broadcast about a rare astronomical event" loading="lazy">
+        <figcaption>An icy traveler that appeared only once every seventy-six years</figcaption>
+      </figure>
 
-    <p class="drop-cap anim-hidden">That evening, televisions around the world were tuned to the same broadcast. Scientists and news reporters spoke excitedly about a rare astronomical event — Halley's Comet. An icy traveler from the depths of space that appeared only once every seventy-six years. For many people alive today, this would be the only time in their lifetime they would ever see it.</p>
+      <p class="anim-hidden">Families gathered around their televisions, waiting for the moment it would appear in the sky.</p>
 
-    <figure class="image-break anim-hidden">
-      <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&q=80"
-           alt="Television showing a space broadcast about a rare astronomical event" loading="lazy">
-      <figcaption>An icy traveler that appeared only once every seventy-six years</figcaption>
-    </figure>
+      <p class="anim-hidden">Jenna and Jade were among them. When the broadcast mentioned that the comet would be easier to see from somewhere away from the city lights, both of them had the same thought: a small hill near the edge of town had become a popular viewing spot for nights like this.</p>
 
-    <p class="anim-hidden">Families gathered around their televisions, waiting for the moment it would appear in the sky.</p>
+      <div class="section-break"></div>
 
-    <p class="anim-hidden">Jenna and Jade were among them. When the broadcast mentioned that the comet would be easier to see from somewhere away from the city lights, both of them had the same thought: a small hill near the edge of town had become a popular viewing spot for nights like this.</p>
+      <div class="audio-shift"
+           data-audio="audio/running-together.mp3"
+           data-audio-label="Running Together"
+           data-crossfade="2"></div>
 
-    <div class="section-break"></div>
+      <p class="anim-hidden">Jade's hand found Jenna's from behind before she could even react.</p>
 
-    <!-- FIRST SHIFT: movement / heading out -->
- 
+      <p class="anim-hidden">"I know the best place to watch it," he said, his voice a little breathless from running, yet firm.</p>
 
-    <p class="anim-hidden">Jade's hand found Jenna's from behind before she could even react.</p>
+      <p class="anim-hidden">She felt a thrill, a soft warmth spreading through her chest as she allowed herself to be pulled along.</p>
 
-    <p class="anim-hidden">"I know the best place to watch it," he said, his voice a little breathless from running, yet firm.</p>
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=900&q=80"
+             alt="Two silhouettes running together through fading evening light" loading="lazy">
+        <figcaption>She allowed herself to be pulled along</figcaption>
+      </figure>
 
-    <p class="anim-hidden">She felt a thrill, a soft warmth spreading through her chest as she allowed herself to be pulled along.</p>
+      <p class="anim-hidden">He led her along a small path behind an old shrine near the edge of town. The path climbed slowly up a quiet hill where very few people came at night.</p>
 
-    <p class="anim-hidden">He led her along a small path behind an old shrine near the edge of town. The path climbed slowly up a quiet hill where very few people came at night.</p>
+      <div class="section-break"></div>
 
-    <figure class="image-break anim-hidden">
-      <img src="images\1 (1).webp"
-           alt="Two silhouettes running together through fading evening light" loading="lazy">
-      <figcaption>She allowed herself to be pulled along</figcaption>
-    </figure>
+      <div class="audio-shift"
+           data-audio="audio/hilltop-night.mp3"
+           data-audio-label="Hilltop Night"
+           data-crossfade="3"></div>
 
-    <div class="section-break"></div>
+      <p class="anim-hidden">When they reached the top, the city lights felt distant.</p>
 
-    <!-- SECOND SHIFT: they arrive at the hill -->
-    
+      <p class="anim-hidden">The world around them was peaceful.</p>
 
-    <p class="anim-hidden">When they reached the top, the city lights felt distant.</p>
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">Only the moon illuminated the hill.</p>
+      </div>
 
-    <p class="anim-hidden">The world around them was peaceful.</p>
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1400&q=80"
+             alt="Quiet hilltop at night with distant city lights on the horizon" loading="lazy">
+      </div>
 
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">Only the moon illuminated the hill.</p>
-    </div>
+      <p class="anim-hidden">They stood quietly beside each other, waiting.</p>
 
-    <p class="anim-hidden">They stood quietly beside each other, waiting.</p>
+      <div class="section-break"></div>
 
-    <div class="section-break"></div>
+      <div class="audio-shift"
+           data-audio="audio/comet-appears.mp3"
+           data-audio-label="Halley's Comet"
+           data-crossfade="3.5"></div>
 
-    <!-- THIRD SHIFT: comet reveal -->
+      <p class="anim-hidden">Then it appeared.</p>
 
-    <p class="anim-hidden">Then it appeared.</p>
+      <div class="comet-container anim-hidden" id="comet-scene">
+        <div class="comet-stars"></div>
+        <div class="moon"></div>
+        <div class="comet" id="the-comet"></div>
+        <p class="comet-label">Halley's Comet</p>
+      </div>
 
-    <figure class="image-break anim-hidden">
-      <img src="images/images.jpg"
-           alt="Halley's Comet streaking across the night sky" loading="lazy">
-      <figcaption>Halley's Comet</figcaption>
-    </figure>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic" style="font-size: 1.6rem;">
-        A brilliant streak of light<br>
-        cut across the night sky.
-      </p>
-    </div>
-
-    <div class="night-text">
-      <p class="anim-hidden">For a moment, the entire sky seemed to shimmer. Jenna froze. She had never seen anything like it before. Something so distant. Something so beautiful. For a few seconds she forgot to breathe as she stared at the glowing trail hanging across the night sky. The sight was breathtaking.</p>
-    </div>
-
-    <div class="night-text">
-      <p class="anim-hidden">Jade watched her closely.</p>
-      <p class="anim-hidden">He saw the reflection of the moon, of the comet, of the sky itself, all shimmering in her gaze. For a moment, it felt as if the universe had condensed into her eyes, and he was suspended inside that brilliance.</p>
-    </div>
-    
-    
-    <div class="night-text">
-  <p class="anim-hidden">Around the world, countless people lifted their eyes to the same sky, whispering wishes into the night as the comet passed above them.</p>
-
-  <p class="anim-hidden">But Jade did not make a wish.</p>
-
-  <p class="anim-hidden">Instead, he let quiet promises gather silently within his heart — promises he never spoke aloud, promises that belonged to no one else, meant only for Jenna.</p>
-</div>
-
-    <figure class="image-break anim-hidden">
-      <iframe 
-        src="https://drive.google.com/file/d/1BERNZl7Icki_djRPum3iFNFicneVGIng/preview"
-        width="100%"
-        height="480"
-        allow="autoplay"
-        style="border-radius: 8px; border: none;">
-      </iframe>
-      <figcaption>The universe had condensed into her eyes</figcaption>
-    </figure>
-
-    <div class="night-text">
-      <p class="anim-hidden">They sat down on the grass. The ground beneath them was slightly rough, prickly, but neither of them noticed.</p>
-    </div>
-
-    <div class="section-break"></div>
-
-    <!-- FOURTH SHIFT: intimate promise section -->
-
-
-    <div class="moon-quote anim-hidden">
-      <p>"The moon is pretty… isn't it?"</p>
-      <a href="https://www.wikihow.com/The-Moon-Is-Beautiful-Isn%27t-It" target="_blank" rel="noopener">the meaning ↗</a>
-    </div>
-
-    <div class="night-text">
-      <p class="anim-hidden">He said it nervously, almost a whisper.</p>
-      <p class="anim-hidden">"Yeah," Jenna replied softly.</p>
-      <p class="anim-hidden">A pause. A shared breath.</p>
-    </div>
-
-    <div class="night-text">
-      <p class="anim-hidden">Then, almost instinctively, their hands moved closer.</p>
-      <p class="anim-hidden">Fingertips brushed. A spark ran quietly up Jade's arm. Neither pulled away. Slowly, naturally, their fingers intertwined. It wasn't just contact — it was recognition. Two halves hesitating, yet certain, finding a language older than words.</p>
-    </div>
-
-    <div class="night-text">
-      <p class="anim-hidden">He glanced down and saw the moonlight reflected in her eyes, catching the comet's faint glow. Her gaze was bright, alive, and for a heartbeat, it felt as if the universe had condensed into those eyes alone. His chest tightened, a gentle ache that made everything else — hill, crowd, night — fade away.</p>
-
-      <p class="anim-hidden">Jenna leaned slightly, her head settling against the curve of his lap. Jade's hand instinctively rested on her shoulder, the warmth of her against him grounding the world in a way nothing else ever had.</p>
-
-      <p class="anim-hidden">The space between them was quiet but charged, their breaths syncing without effort, each heartbeat echoing in the stillness.</p>
-    </div>
-
-    <div class="night-text">
-      <p class="anim-hidden">She tilted her face up toward him. His eyes softened as he looked down.</p>
-      <p class="anim-hidden">"What are you looking at?" she asked playfully, though her voice was gentle, her tone hesitant yet full of trust.</p>
-      <p class="anim-hidden">He turned his head briefly, embarrassed, then slowly met her gaze again.</p>
-    </div>
-
-    <div class="whisper anim-hidden">
-      <p>"I'm going to protect you,"</p>
-      <p>he whispered, almost to himself,</p>
-      <p>the words low, steady, weighted with meaning.</p>
-    </div>
-
-    <div class="whisper anim-hidden">
-      <p>"Forever," she added,</p>
-      <p>her lips barely moving,</p>
-      <p>her eyes drifting closed.</p>
-    </div>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic" style="font-size: 1.5rem; color: #c8c0ff; text-shadow: 0 0 20px rgba(200,192,255,0.15);">
-        "I promise to protect you forever,"<br><br>
-        he repeated, firmer this time,<br>
-        every syllable deliberate,<br>
-        wrapped in all the feelings<br>
-        he had learned to contain.
-      </p>
-    </div>
-
-    <div class="night-text">
-      <p class="anim-hidden">Jenna relaxed fully into him, sleep beginning to claim her, safe in his presence.</p>
-    </div>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        All the invisible walls she'd built<br>
-        around her finally fell away.
-      </p>
-    </div>
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic" style="font-size: 1.6rem;">
+          A brilliant streak of light<br>
+          cut across the night sky.
+        </p>
+      </div>
 
-    <div class="night-text">
-      <p class="anim-hidden">Jade stayed still, holding her gently, letting the comet streak above them, the night deep and infinite. For the first time, he realized: protection wasn't just about strength or victory — it was being here, being present.</p>
+      <div class="full-bleed anim-hidden">
+        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=1400&q=80"
+             alt="Brilliant streak of light across the night sky with stars" loading="lazy">
+      </div>
 
-      <p class="anim-hidden">He looked down at her peaceful face. The moonlight danced in her eyes, dimmed now by sleep. Above them, the fading trail of Halley's Comet stretched faintly across the sky — a quiet reminder that some moments in life only happen once.</p>
-    </div>
+      <div class="night-text">
+        <p class="anim-hidden">For a moment, the entire sky seemed to shimmer. Jenna froze. She had never seen anything like it before. Something so distant. Something so beautiful. For a few seconds she forgot to breathe as she stared at the glowing trail hanging across the night sky. The sight was breathtaking.</p>
+      </div>
+
+      <div class="night-text">
+        <p class="anim-hidden">Jade watched her closely.</p>
+
+        <p class="anim-hidden">He saw the reflection of the moon, of the comet, of the sky itself, all shimmering in her gaze. For a moment, it felt as if the universe had condensed into her eyes, and he was suspended inside that brilliance.</p>
+      </div>
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&q=80"
+             alt="Eyes reflecting the soft glow of moonlight and starlight" loading="lazy">
+        <figcaption>The universe had condensed into her eyes</figcaption>
+      </figure>
+
+      <div class="night-text">
+        <p class="anim-hidden">They sat down on the grass. The ground beneath them was slightly rough, prickly, but neither of them noticed.</p>
+      </div>
+
+      <div class="section-break"></div>
+
+      <div class="audio-shift"
+           data-audio="audio/moonlight-promise.mp3"
+           data-audio-label="Moonlight Promise"
+           data-crossfade="3"></div>
+
+      <div class="moon-quote anim-hidden">
+        <p>"The moon is pretty… isn't it?"</p>
+        <a href="https://www.wikihow.com/The-Moon-Is-Beautiful-Isn%27t-It" target="_blank" rel="noopener">the meaning ↗</a>
+      </div>
+
+      <div class="night-text">
+        <p class="anim-hidden">He said it nervously, almost a whisper.</p>
+
+        <p class="anim-hidden">"Yeah," Jenna replied softly.</p>
+
+        <p class="anim-hidden">A pause. A shared breath.</p>
+      </div>
+
+      <div class="night-text">
+        <p class="anim-hidden">Then, almost instinctively, their hands moved closer.</p>
+
+        <p class="anim-hidden">Fingertips brushed. A spark ran quietly up Jade's arm. Neither pulled away. Slowly, naturally, their fingers intertwined. It wasn't just contact — it was recognition. Two halves hesitating, yet certain, finding a language older than words.</p>
+      </div>
+
+      <figure class="image-break anim-hidden">
+        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=900&q=80"
+             alt="Two hands gently intertwined under soft moonlight" loading="lazy">
+        <figcaption>Finding a language older than words</figcaption>
+      </figure>
+
+      <div class="night-text">
+        <p class="anim-hidden">He glanced down and saw the moonlight reflected in her eyes, catching the comet's faint glow. Her gaze was bright, alive, and for a heartbeat, it felt as if the universe had condensed into those eyes alone. His chest tightened, a gentle ache that made everything else — hill, crowd, night — fade away.</p>
+
+        <p class="anim-hidden">Jenna leaned slightly, her head settling against the curve of his lap. Jade's hand instinctively rested on her shoulder, the warmth of her against him grounding the world in a way nothing else ever had.</p>
+
+        <p class="anim-hidden">The space between them was quiet but charged, their breaths syncing without effort, each heartbeat echoing in the stillness.</p>
+      </div>
+
+      <div class="night-text">
+        <p class="anim-hidden">She tilted her face up toward him. His eyes softened as he looked down.</p>
+
+        <p class="anim-hidden">"What are you looking at?" she asked playfully, though her voice was gentle, her tone hesitant yet full of trust.</p>
+
+        <p class="anim-hidden">He turned his head briefly, embarrassed, then slowly met her gaze again.</p>
+      </div>
+
+      <div class="whisper anim-hidden">
+        <p>"I'm going to protect you,"</p>
+        <p>he whispered, almost to himself,</p>
+        <p>the words low, steady, weighted with meaning.</p>
+      </div>
+
+      <div class="whisper anim-hidden">
+        <p>"Forever," she added,</p>
+        <p>her lips barely moving,</p>
+        <p>her eyes drifting closed.</p>
+      </div>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic" style="font-size: 1.5rem; color: #c8c0ff; text-shadow: 0 0 20px rgba(200,192,255,0.15);">
+          "I promise to protect you forever,"<br><br>
+          he repeated, firmer this time,<br>
+          every syllable deliberate,<br>
+          wrapped in all the feelings<br>
+          he had learned to contain.
+        </p>
+      </div>
+
+      <div class="night-text">
+        <p class="anim-hidden">Jenna relaxed fully into him, sleep beginning to claim her, safe in his presence.</p>
+      </div>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">
+          All the invisible walls she'd built<br>
+          around her finally fell away.
+        </p>
+      </div>
+
+      <div class="hill-scene anim-hidden">
+        <div class="sky"></div>
+        <div class="ground"></div>
+        <div class="silhouettes">💫</div>
+      </div>
+
+      <div class="night-text">
+        <p class="anim-hidden">Jade stayed still, holding her gently, letting the comet streak above them, the night deep and infinite. For the first time, he realized: protection wasn't just about strength or victory — it was being here, being present.</p>
+
+        <p class="anim-hidden">He looked down at her peaceful face. The moonlight danced in her eyes, dimmed now by sleep. Above them, the fading trail of Halley's Comet stretched faintly across the sky — a quiet reminder that some moments in life only happen once.</p>
+      </div>
+
+      <div class="dramatic-section anim-hidden">
+        <p class="dramatic">
+          And when they do —<br><br>
+          They stay with you forever.
+        </p>
+      </div>
+
+      <!-- ====== EPILOGUE — YEARS LATER ====== -->
+
+      <div class="epilogue-divider anim-hidden">
+        <div class="line"></div>
+        <p class="years">Years Later</p>
+        <div class="line"></div>
+      </div>
+
+      <div class="audio-shift"
+           data-audio="audio/years-later.mp3"
+           data-audio-label="Years Later"
+           data-crossfade="4"></div>
+
+      <div class="epilogue-text">
+        <p class="anim-hidden">They return to the hill.</p>
+
+        <p class="anim-hidden">Halley's Comet won't return in their lifetime.</p>
+
+        <p class="anim-hidden">They sit together beneath the quiet stars, their hands still intertwined.</p>
+
+        <p class="anim-hidden">The sky above them is quiet now.</p>
+      </div>
+
+      <div class="final-words anim-hidden">
+        <p class="dim">But neither of them needs the comet anymore.</p>
+        <p class="dim">Because the comet was never</p>
+        <p class="dim">the important part of that night.</p>
+      </div>
+
+      <div class="final-words anim-hidden">
+        <p class="bright">They were.</p>
+      </div>
 
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        And when they do —<br><br>
-        They stay with you forever.
-      </p>
-    </div>
-
-    <!-- ====== EPILOGUE — YEARS LATER ====== -->
-
-    <div class="epilogue-divider anim-hidden">
-      <div class="line"></div>
-      <p class="years">Years Later</p>
-      <div class="line"></div>
-    </div>
-
-    <!-- FIFTH SHIFT: epilogue -->
-    <div class="audio-shift"
-         data-audio="audio/bluebox_originals-way-to-you-again-342367.mp3"
-         data-audio-label="Years Later"
-         data-crossfade="4"></div>
-
-    <div class="epilogue-text">
-      <p class="anim-hidden">They return to the hill.</p>
-      <p class="anim-hidden">Halley's Comet won't return in their lifetime.</p>
-      <p class="anim-hidden">They sit together beneath the quiet stars, their hands still intertwined.</p>
-      <p class="anim-hidden">The sky above them is quiet now.</p>
-    </div>
-
-    <div class="final-words anim-hidden">
-      <p class="dim">But neither of them needs the comet anymore.</p>
-      <p class="dim">Because the comet was never</p>
-      <p class="dim">the important part of that night.</p>
-    </div>
-
-    <div class="final-words anim-hidden">
-      <p class="bright">They were.</p>
-    </div>
-
-  </div>
-
-  <div class="chapter-end" style="color: #c8c0ff;">✦</div>
-</article>
-
-
-<!-- ============================================================ -->
-<!--          BONUS CHAPTER — A DAY IN THE CLASSROOM             -->
-<!-- ============================================================ -->
-<article class="chapter bonus-chapter" id="bonus"
-         data-audio="audio/nanahara.mp3"
-         data-audio-label="Bonus Chapter">
-
-    <div class="audio-shift"
-         data-audio="audio/nanahara.mp3"
-         data-audio-label="Bonus Chapter"
-         data-crossfade="3"></div>
-
-  <header class="chapter-hero">
-    <img src="https://images.unsplash.com/photo-1497015455546-1da71faf8d06?w=1400&q=80"
-         alt="Empty classroom bathed in golden afternoon sunlight" class="hero-bg">
-    <div class="hero-text">
-      <span class="chapter-label">Bonus Chapter</span>
-      <h1 class="chapter-title">A Day in the Classroom</h1>
-    </div>
-  </header>
-
-  <div class="chapter-body">
-
-    <p class="drop-cap anim-hidden">The classroom door suddenly slid open with a soft creak.</p>
-
-    <p class="anim-hidden">"You're still here? What are you looking at?"</p>
-
-    <p class="anim-hidden">Jade's voice came from the doorway as he stepped inside.</p>
-
-    <p class="anim-hidden">Jenna turned, slightly startled.</p>
-
-    <p class="anim-hidden">"You scared me," she said, letting out a small breath.</p>
-
-    <p class="anim-hidden">Jade walked toward her, stopping beside the window where she had been standing.</p>
-
-    <p class="anim-hidden">"So?" he asked, glancing outside. "What was so interesting?"</p>
-
-    <p class="anim-hidden">"The cats," she said, gesturing toward the courtyard. "They look so peaceful."</p>
-
-    <p class="anim-hidden">Jade leaned beside her and looked out for a moment.</p>
-
-    <div class="section-break"></div>
-
-    <!-- FIRST SHIFT: the moment begins -->
-
-    <p class="anim-hidden">Without really thinking about it, Jenna reached out and took both of his hands.</p>
-
-    <p class="anim-hidden">She stepped a little closer.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">A hush settled between them.</p>
     </div>
 
-    <p class="anim-hidden">They looked at each other as if trying to see past expression, past words, into something quieter and deeper.</p>
+    <div class="chapter-end" style="color: #c8c0ff;">✦</div>
+  </article>
 
-    <p class="anim-hidden">Jade's heart skipped once, thrown off by how natural the closeness felt.</p>
 
-    <p class="anim-hidden">Neither of them spoke.</p>
-
-    <p class="anim-hidden">The soft breeze from the open window and the distant rustling of trees made the classroom feel suspended in time.</p>
-
-    <div class="section-break"></div>
-
-    <!-- SECOND SHIFT: the fall -->
-
-    <p class="anim-hidden">Then suddenly—</p>
-
-    <p class="anim-hidden">The door slid open again.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic" style="font-size: 1.3rem;">Creaaaaak.</p>
-    </div>
-
-    <p class="anim-hidden">Jenna flinched at the sound and instinctively stepped back.</p>
-
-    <p class="anim-hidden">Her foot slipped slightly against the smooth floor.</p>
-
-    <p class="anim-hidden">"Ah—!"</p>
-
-    <p class="anim-hidden">Before she could fall, Jade reached for her at once.</p>
-
-    <p class="anim-hidden">His arm caught her securely, but the momentum pulled both of them down.</p>
-
-    <p class="anim-hidden">He dropped with her, one arm wrapping around her while the other moved instantly behind her head, shielding her from the floor as they landed between the desks.</p>
-
-    <div class="section-break"></div>
-
-    <!-- THIRD SHIFT: the janitor, the silence -->
-
-    <p class="anim-hidden">The school janitor had entered carrying a bucket and cloth, already beginning to wipe down the board and straighten the desks near the front of the room.</p>
-
-    <p class="anim-hidden">He didn't seem to notice them behind the rows of tables.</p>
-
-    <p class="anim-hidden">Jade stayed where he was, covering Jenna protectively so she wouldn't accidentally bump her head or shift into view.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        They remained still.<br><br>
-        Very still.
-      </p>
-    </div>
-
-    <p class="anim-hidden">A minute later, the janitor finished and walked back out.</p>
-
-    <p class="anim-hidden">The door slid shut.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">Silence returned to the classroom.</p>
-    </div>
-
-    <div class="section-break"></div>
-
-    <!-- FOURTH SHIFT: closeness -->
-
-    <p class="anim-hidden">Jenna exhaled slowly, trying to steady herself.</p>
-
-    <p class="anim-hidden">She tried to sit up—</p>
-
-    <p class="anim-hidden">Then realized Jade was still above her.</p>
-
-    <p class="anim-hidden">Their faces were closer than either of them expected.</p>
-
-    <p class="anim-hidden">Her breath caught.</p>
-
-    <p class="anim-hidden">Her heartbeat quickened.</p>
-
-    <p class="anim-hidden">Jade slowly brushed a few strands of hair away from her face, tucking them gently behind her ear.</p>
-
-    <p class="anim-hidden">Heat rose instantly to her cheeks.</p>
-
-    <div class="whisper anim-hidden">
-      <p>"Are you okay?" he asked softly.</p>
-    </div>
-
-    <p class="anim-hidden">He carefully helped her sit up.</p>
-
-    <p class="anim-hidden">Glancing once toward the door, he said quietly, "Looks like he's gone."</p>
-
-    <p class="anim-hidden">Then he looked back at her.</p>
-
-    <div class="section-break"></div>
-
-    <!-- FIFTH SHIFT: the moment deepens -->
-
-    <p class="anim-hidden">Before he could say anything else, Jenna reached forward and gently pulled him closer.</p>
-
-    <p class="anim-hidden">She rested her forehead against his.</p>
-
-    <p class="anim-hidden">They stayed there in the fading gold of the afternoon, close enough to share warmth, close enough to hear the softness of each other's breathing.</p>
-
-    <p class="anim-hidden">Almost without thinking, she moved closer and held him, like the moment itself had quietly asked her not to let go.</p>
-
-    <p class="anim-hidden">He hesitated for a moment.</p>
-
-    <p class="anim-hidden">Then slowly leaned a little closer.</p>
-
-    <p class="anim-hidden">Not rushing.</p>
-
-    <p class="anim-hidden">He lifted one hand and placed it gently behind her neck, his touch steady and careful, as though he wanted to hold her without breaking the fragile beauty of the moment.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        He moved closer.<br><br>
-        Slowly.
-      </p>
-    </div>
-
-    <p class="anim-hidden">Giving her every chance to pull away.</p>
-
-    <p class="anim-hidden">She didn't.</p>
-
-    <p class="anim-hidden">Her lashes lowered.</p>
-
-    <p class="anim-hidden">Her lips parted with the smallest breath.</p>
-
-    <div class="section-break"></div>
-
-    <!-- SIXTH SHIFT: the kiss -->
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic" style="font-size: 1.5rem;">
-        And then Jade kissed her.<br><br>
-        Softly.
-      </p>
-    </div>
-
-    <p class="anim-hidden">The kiss was light at first, almost hesitant, as if he were afraid the moment might vanish if he held it too tightly.</p>
-
-    <p class="anim-hidden">But when she didn't pull away, it deepened—not in urgency, but in feeling.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        It lingered.<br><br>
-        Warm.<br><br>
-        Gentle.
-      </p>
-    </div>
-
-    <p class="anim-hidden">Sweet enough to make time feel unsteady.</p>
-
-    <p class="anim-hidden">Jenna's fingers tightened slightly against him.</p>
-
-    <p class="anim-hidden">There was only the softness of his lips, the warmth of his hand at her neck, the closeness of him that made everything inside her feel suddenly, achingly awake.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        It wasn't impulsive.<br><br>
-        It was a kiss of recognition.
-      </p>
-    </div>
-
-    <p class="anim-hidden">Like two hearts arriving at the same place at the same time.</p>
-
-    <p class="anim-hidden">Like something long unfinished had finally found its answer.</p>
-
-    <div class="section-break"></div>
-
-    <!-- SEVENTH SHIFT: aftermath -->
-
-    <p class="anim-hidden">When they parted, it was only by a breath.</p>
-
-    <p class="anim-hidden">Their foreheads almost touched again.</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic">
-        Neither of them spoke.<br><br>
-        Neither of them needed to.
-      </p>
-    </div>
-
-    <p class="anim-hidden">The air around them felt changed — softer, fuller, as if the classroom itself had become a secret it would never tell.</p>
-
-    <p class="anim-hidden">It felt like a place the world had stepped around, just to leave them this moment alone.</p>
-
-    <div class="section-break"></div>
-
-    <!-- EIGHTH SHIFT: the quiet certainty -->
-
-    <p class="anim-hidden">And in that golden, breathless stillness, Jenna felt it with a certainty so quiet it almost hurt:</p>
-
-    <div class="dramatic-section anim-hidden">
-      <p class="dramatic" style="font-size: 1.4rem;">
-        If the world gave them a thousand beginnings,<br>
-        she would still find her way back to this moment.<br><br>
-        Back to him.
-      </p>
-    </div>
-
-    <p class="anim-hidden">And if time ever tried to scatter them, if life ever pulled them apart and made them strangers again—</p>
-
-    <div class="whisper anim-hidden">
-      <p>He would still come looking for her.</p>
-      <p>He would come find the smallest traces of her</p>
-      <p>in every lifetime.</p>
-    </div>
-
-    <div class="section-break"></div>
-
-    <!-- FINAL MOMENT -->
-
-    <div class="final-words anim-hidden">
-      <p class="dim">For a little while longer, neither of them moved.</p>
-    </div>
-
-    <div class="final-words anim-hidden">
-      <p class="bright">They simply stayed.</p>
-    </div>
-
-  </div>
-
-  <div class="chapter-end">✦</div>
-</article>
   <!-- ==================== BOOK END ==================== -->
   <section class="book-end">
     <div>
       <p class="symbol">⦊</p>
-     
+      <h2>To be continued...</h2>
       <p class="thanks">Thank you for reading</p>
+      <p class="next-info">New chapters coming soon</p>
       <button class="btn-enter" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         Return to Beginning
       </button>
@@ -4155,23 +3710,6 @@ document.addEventListener('DOMContentLoaded', () => {
       p.style.animationDelay = (Math.random() * 10) + 's';
       p.style.opacity = 0;
       particleContainer.appendChild(p);
-    }
-  }
-
-  // ================================================================
-  //  SHOOTING STARS (Chapter 8)
-  // ================================================================
-  const shootingStarsContainer = document.getElementById('shooting-stars');
-  if (shootingStarsContainer) {
-    for (let i = 0; i < 6; i++) {
-      const star = document.createElement('div');
-      star.className = 'shooting-star-anim';
-      star.style.top = (Math.random() * 60) + '%';
-      star.style.left = (Math.random() * 70) + '%';
-      star.style.setProperty('--duration', (Math.random() * 12 + 10) + 's');
-      star.style.setProperty('--delay', (Math.random() * 15) + 's');
-      star.style.width = (Math.random() * 60 + 40) + 'px';
-      shootingStarsContainer.appendChild(star);
     }
   }
 
@@ -4315,20 +3853,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================================================================
   //  CHAPTER AUDIO
   // ================================================================
-  let isNavigating = false;
   const indicator = document.getElementById('chapter-indicator');
 
   document.querySelectorAll('.chapter').forEach(ch => {
-    // Use the chapter-hero as trigger instead of the full article
-    // This ensures audio only plays when user SEES the chapter title
-    const hero = ch.querySelector('.chapter-hero');
-    const triggerEl = hero || ch;
-
     ScrollTrigger.create({
-      trigger: triggerEl,
-      start: 'top 30%',
+      trigger: ch,
+      start: 'top 60%',
+      end: 'bottom 40%',
       onEnter: () => {
-        if (isNavigating) return; // Skip during TOC navigation
         A.play(ch.dataset.audio, 0.3, 2.5, ch.dataset.audioLabel || '');
         const title = ch.querySelector('.chapter-title');
         if (title) {
@@ -4337,7 +3869,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       },
       onEnterBack: () => {
-        if (isNavigating) return;
         A.play(ch.dataset.audio, 0.3, 2.5, ch.dataset.audioLabel || '');
         const title = ch.querySelector('.chapter-title');
         if (title) indicator.textContent = title.textContent;
@@ -4354,125 +3885,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // ================================================================
   //  MID-CHAPTER AUDIO SHIFTS
   // ================================================================
-  const allShifts = document.querySelectorAll('.audio-shift');
-  allShifts.forEach((marker, index) => {
-    const label = marker.dataset.audioLabel || marker.dataset.label || '';
-    const src = marker.dataset.audio;
-    const fade = parseFloat(marker.dataset.crossfade) || 2;
-
+  document.querySelectorAll('.audio-shift').forEach(marker => {
     ScrollTrigger.create({
       trigger: marker,
-      // Changed from 'top center' to 'top 75%'
-      // This means the shift element must be 75% up the viewport
-      // before the music changes — gives much more reading time
-      start: 'top 75%',
+      start: 'top center',
       onEnter: () => {
-        if (isNavigating) return; // DON'T play if we are just jumping through
-        A.play(src, 0.35, fade, label);
-      },
-      onEnterBack: () => {
-        if (isNavigating) return; // DON'T play if we are just jumping through
-
-        // When scrolling back up, find the previous audio
-        let prevSrc = null;
-        let prevLabel = '';
-        let prevFade = 2;
-
-        // Look for previous shift in same chapter
-        const myChapter = marker.closest('.chapter');
-        for (let i = index - 1; i >= 0; i--) {
-          if (allShifts[i].closest('.chapter') === myChapter) {
-            prevSrc = allShifts[i].dataset.audio;
-            prevLabel = allShifts[i].dataset.audioLabel || allShifts[i].dataset.label || '';
-            prevFade = parseFloat(allShifts[i].dataset.crossfade) || 2;
-            break;
-          }
-        }
-
-        if (prevSrc) {
-          A.play(prevSrc, 0.35, prevFade, prevLabel);
-        } else if (myChapter && myChapter.dataset.audio) {
-          // No previous shift — play chapter's main audio
-          A.play(myChapter.dataset.audio, 0.3, 2.5, myChapter.dataset.audioLabel || '');
-        }
+        A.play(
+          marker.dataset.audio,
+          0.35,
+          parseFloat(marker.dataset.crossfade) || 2,
+          marker.dataset.audioLabel || ''
+        );
       }
     });
   });
 
   // ================================================================
-  //  SMOOTH SCROLL (plain JavaScript, no GSAP)
+  //  SMOOTH SCROLL
   // ================================================================
-  // Removed ScrollToPlugin-based smooth scroll.
-
-  // Targeted navigation helper
-  function scrollToTarget(targetId) {
-    var target = document.querySelector(targetId);
-    if (!target) {
-      console.log('Target not found:', targetId);
-      return;
-    }
-
-    console.log('Scrolling to:', targetId);
-
-    // Block audio triggers
-    isNavigating = true;
-
-    // Calculate position — plain JavaScript, no GSAP
-    var rect = target.getBoundingClientRect();
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    var targetY = rect.top + scrollTop;
-
-    // Plain jump — no GSAP, no plugins
-    window.scrollTo(0, targetY);
-
-    // After landing, play correct audio and refresh
-    setTimeout(function() {
-      isNavigating = false;
-      playAudioForTarget(target);
-      ScrollTrigger.refresh();
-      console.log('Landed at:', targetId);
-    }, 200);
-  }
-
-  // TOC links
   document.querySelectorAll('.toc a').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const targetId = link.getAttribute('href');
-      const target = document.querySelector(targetId);
-      
-      if (target) {
-        isNavigating = true; // Turn OFF audio triggers
-        
-        const targetY = target.getBoundingClientRect().top + window.scrollY;
-        
-        window.scrollTo({
-          top: targetY,
-          behavior: 'smooth'
-        });
-        // Turn audio triggers back ON after the scroll finishes
-        setTimeout(() => {
-          isNavigating = false;
-          // Manually play the correct song for the chapter we arrived at
-          if (target.dataset.audio) {
-            A.play(target.dataset.audio, 0.3, 2, target.dataset.audioLabel || '');
-          }
-        }, 1500); // Adjust time based on scroll speed
-      }
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
-  // Begin Reading button
-  var btnEnter = document.getElementById('btn-enter');
-  if (btnEnter) {
-    btnEnter.addEventListener('click', function(e) {
-      e.preventDefault();
-      console.log('Begin Reading clicked');
-      scrollToTarget('#toc');
-    });
-  }
+  document.getElementById('btn-enter').addEventListener('click', () => {
+    document.getElementById('toc').scrollIntoView({ behavior: 'smooth' });
+  });
 
-  // Scroll hint fade
   const scrollHint = document.querySelector('.scroll-hint');
   window.addEventListener('scroll', () => {
     if (scrollHint) scrollHint.style.opacity = window.scrollY > 100 ? '0' : '.5';
@@ -4495,12 +3937,11 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('book-scroll', window.scrollY);
     }, 1000);
   }, { passive: true });
- 
+
 });
 </script>
 
 </body>
 </html>
-
 
 
