@@ -1435,6 +1435,176 @@ body {
   .hill-scene { height: 30vh; min-height: 220px; }
   .moon-quote p { font-size: 1.15rem; }
 }
+
+/* ============================================================ */
+/*          BONUS CHAPTER — REFINED GOLDEN STYLING             */
+/* ============================================================ */
+
+/* Warm, complementary background that matches golden text */
+#bonus {
+  background: linear-gradient(165deg, 
+    #1a1410 0%, 
+    #251d15 25%, 
+    #2d2418 50%, 
+    #251d15 75%, 
+    #1a1410 100%);
+  position: relative;
+}
+
+/* Subtle warm texture overlay */
+#bonus::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 40%, rgba(220, 177, 91, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(184, 134, 11, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Remove starfield effects */
+#bonus .starfield-nebula,
+#bonus .starfield-stars-small,
+#bonus .starfield-stars-large,
+#bonus .shooting-stars {
+  display: none;
+}
+
+/* Normal TOC styling - no gold */
+.toc a[href="#bonus"] {
+  color: inherit !important;
+  font-weight: inherit !important;
+}
+
+/* Chapter label — subtle gold */
+#bonus .chapter-label {
+  color: #c9a165;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+}
+
+/* Chapter title — refined gold with subtle shimmer */
+#bonus .chapter-title {
+  color: #dcb15b;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(220, 177, 91, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+#bonus .chapter-title::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: bonusTitleShine 5s ease-in-out infinite;
+  pointer-events: none;
+  transform: skewX(-25deg);
+}
+
+@keyframes bonusTitleShine {
+  0%   { left: -150%; }
+  12%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Drop cap — golden */
+#bonus .drop-cap::first-letter {
+  color: #dcb15b;
+  font-weight: 700;
+}
+
+/* Dramatic sections — golden with subtle glow */
+#bonus .dramatic-section .dramatic {
+  color: #dcb15b;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.8;
+  text-shadow: 0 0 8px rgba(220, 177, 91, 0.08);
+}
+
+/* Whisper sections — golden */
+#bonus .whisper p {
+  color: #c9a165;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+/* Final words bright — golden */
+#bonus .final-words .bright {
+  color: #dcb15b;
+  font-weight: 600;
+  text-shadow: 0 0 6px rgba(220, 177, 91, 0.1);
+}
+
+/* Final words dim — subtle gray */
+#bonus .final-words .dim {
+  color: #8a8074;
+  font-weight: 400;
+}
+
+/* Section breaks — golden */
+#bonus .section-break::before {
+  color: #dcb15b;
+  opacity: 0.6;
+}
+
+/* Chapter end symbol — golden */
+#bonus .chapter-end {
+  color: #dcb15b !important;
+  font-size: 2rem;
+}
+
+/* Image captions — muted gold */
+#bonus .image-break figcaption {
+  color: #a8927a;
+  font-weight: 500;
+  font-style: italic;
+}
+
+/* Image hover effect — warm glow */
+#bonus .image-break:hover img {
+  box-shadow: 0 0 25px rgba(220, 177, 91, 0.12), 0 0 50px rgba(220, 177, 91, 0.06);
+}
+
+/* Hero background — warmer tint */
+#bonus .chapter-hero .hero-bg {
+  filter: brightness(0.22) saturate(0.7) sepia(0.15);
+}
+
+/* Keep all normal text at default color */
+#bonus .chapter-body p,
+#bonus .night-text p {
+  color: inherit;
+  font-weight: inherit;
+}
+
+/* Ensure content stays above background */
+#bonus .chapter-body,
+#bonus .chapter-hero,
+#bonus .chapter-end {
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove any conflicting starfield text styling */
+#bonus.starfield .chapter-body p {
+  color: var(--text);
+}
+
+#bonus.starfield .drop-cap::first-letter {
+  color: #dcb15b;
+}
+
+#bonus.starfield .dramatic {
+  color: #dcb15b;
+  text-shadow: 0 0 8px rgba(220, 177, 91, 0.08);
+}
 </style>
 </head>
 <body>
@@ -1512,6 +1682,7 @@ body {
       <li><a href="#ch6"><span class="ch-num">06</span><span class="ch-name">The Unforeseen Confession</span></a></li>
       <li><a href="#ch7"><span class="ch-num">07</span><span class="ch-name">The Day of Christmas Eve</span></a></li>
       <li><a href="#ch8"><span class="ch-num">08</span><span class="ch-name">The Day the Sky Spoke</span></a></li>
+      <li><a href="#bonus"><span class="ch-num">B</span><span class="ch-name">BONUS CHAPTER</span></a></li>
     </ul>
   </nav>
 
@@ -3667,6 +3838,308 @@ body {
 </article>
 
 
+<!-- ============================================================ -->
+<!--          BONUS CHAPTER — THE CLASSROOM CONSTELLATION        -->
+<!-- ============================================================ -->
+<article class="chapter bonus-chapter" id="bonus"
+         data-audio="audio\nanahara.mp3"
+         data-audio-label="Bonus Chapter">
+
+    <div class="audio-shift"
+                 data-audio="audio\nanahara.mp3"
+ data-audio-label="Bonus Chapter"
+         data-crossfade="3"></div>
+
+  <header class="chapter-hero">
+    <div class="hero-text">
+      <span class="chapter-label">Bonus Chapter</span>
+      <h1 class="chapter-title">The Classroom Constellation</h1>
+    </div>
+  </header>
+
+  <div class="chapter-body">
+
+    <p class="drop-cap anim-hidden">The classroom door suddenly slid open with a soft creak.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">"You're still here? What are you looking at?"</p>
+    </div>
+
+    <p class="anim-hidden">Jade's voice came from the doorway as he stepped inside.</p>
+
+    <p class="anim-hidden">Jenna turned, slightly startled.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">"You scared me," she said, letting out a small breath.</p>
+    </div>
+
+    <p class="anim-hidden">Jade walked toward her, stopping beside the window where she had been standing.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">"So?" he asked, glancing outside. "What was so interesting?"</p>
+    </div>
+
+    <p class="anim-hidden">"The cats," she said, gesturing toward the courtyard. "They look so peaceful."</p>
+
+    <p class="anim-hidden">Jade leaned beside her and looked out for a moment.</p>
+
+    <div class="section-break"></div>
+
+    <!-- FIRST SHIFT: the moment begins -->
+
+    <p class="anim-hidden">Without really thinking about it, Jenna reached out and took both of his hands.</p>
+
+    <p class="anim-hidden">She stepped a little closer.</p>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic">A hush settled between them.</p>
+    </div>
+
+    <div class="night-text">
+      <p class="anim-hidden">They looked at each other as if trying to see past expression, past words, into something quieter and deeper.</p>
+    </div>
+
+    <p class="anim-hidden">Jade's heart skipped once, thrown off by how natural the closeness felt.</p>
+
+    <p class="anim-hidden">Neither of them spoke.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">The soft breeze from the open window and the distant rustling of trees made the classroom feel suspended in time.</p>
+    </div>
+
+    <div class="section-break"></div>
+
+    <!-- SECOND SHIFT: the fall -->
+
+    <p class="anim-hidden">Then suddenly—</p>
+
+    <p class="anim-hidden">The door slid open again.</p>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic" style="font-size: 1.3rem;">Creaaaaak.</p>
+    </div>
+
+    <p class="anim-hidden">Jenna flinched at the sound and instinctively stepped back.</p>
+
+    <p class="anim-hidden">Her foot slipped slightly against the smooth floor.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">"Ah—!"</p>
+    </div>
+
+    <p class="anim-hidden">Before she could fall, Jade reached for her at once.</p>
+
+    <p class="anim-hidden">His arm caught her securely, but the momentum pulled both of them down.</p>
+
+    <p class="anim-hidden">He dropped with her, one arm wrapping around her while the other moved instantly behind her head, shielding her from the floor as they landed between the desks.</p>
+
+    <div class="section-break"></div>
+
+    <!-- THIRD SHIFT: the janitor, the silence -->
+
+    <p class="anim-hidden">The school janitor had entered carrying a bucket and cloth, already beginning to wipe down the board and straighten the desks near the front of the room.</p>
+
+    <p class="anim-hidden">He didn't seem to notice them behind the rows of tables.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">Jade stayed where he was, covering Jenna protectively so she wouldn't accidentally bump her head or shift into view.</p>
+    </div>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic">
+        They remained still.<br><br>
+        Very still.
+      </p>
+    </div>
+
+    <p class="anim-hidden">A minute later, the janitor finished and walked back out.</p>
+
+    <p class="anim-hidden">The door slid shut.</p>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic">Silence returned to the classroom.</p>
+    </div>
+
+    <div class="section-break"></div>
+
+    <!-- FOURTH SHIFT: closeness -->
+
+    <p class="anim-hidden">Jenna exhaled slowly, trying to steady herself.</p>
+
+    <p class="anim-hidden">She tried to sit up—</p>
+
+    <p class="anim-hidden">Then realized Jade was still close beside her.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">Their faces were closer than either of them expected.</p>
+    </div>
+
+    <p class="anim-hidden">Her breath caught.</p>
+
+    <p class="anim-hidden">Her heartbeat quickened.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">Jade slowly brushed a few strands of hair away from her face, tucking them gently behind her ear.</p>
+    </div>
+
+    <p class="anim-hidden">Heat rose instantly to her cheeks.</p>
+
+    <div class="whisper anim-hidden">
+      <p>"Are you okay?" he asked softly.</p>
+    </div>
+
+    <p class="anim-hidden">He carefully helped her sit up.</p>
+
+    <p class="anim-hidden">Glancing once toward the door, he said quietly, "Looks like he's gone."</p>
+
+    <p class="anim-hidden">Then he looked back at her.</p>
+
+    <div class="section-break"></div>
+
+    <!-- FIFTH SHIFT: the moment deepens -->
+
+    <p class="anim-hidden">Before he could say anything else, Jenna reached forward and gently pulled him closer.</p>
+
+    <p class="anim-hidden">She rested her forehead against his.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">They stayed there in the fading gold of the afternoon, close enough to share warmth, close enough to hear the softness of each other's breathing.</p>
+    </div>
+
+    <p class="anim-hidden">Almost without thinking, she moved closer and held him, like the moment itself had quietly asked her not to let go.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">He hesitated for a moment.</p>
+      <p class="anim-hidden">Then slowly leaned a little closer.</p>
+      <p class="anim-hidden">Not rushing.</p>
+    </div>
+
+    <p class="anim-hidden">He lifted one hand and placed it gently behind her neck, his touch steady and careful, as though he wanted to hold her without breaking the fragile beauty of the moment.</p>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic">
+        He moved closer.<br><br>
+        Slowly.
+      </p>
+    </div>
+
+    <p class="anim-hidden">Giving her every chance to pull away.</p>
+
+    <p class="anim-hidden">She didn't.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">Her lashes lowered.</p>
+      <p class="anim-hidden">Her lips parted with the smallest breath.</p>
+    </div>
+
+    <div class="section-break"></div>
+
+    <!-- SIXTH SHIFT: the kiss -->
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic" style="font-size: 1.5rem;">
+        And then Jade kissed her.<br><br>
+        Softly.
+      </p>
+    </div>
+
+    <div class="night-text">
+      <p class="anim-hidden">The kiss was light at first, almost hesitant, as if he were afraid the moment might vanish if he held it too tightly.</p>
+    </div>
+
+    <p class="anim-hidden">But when she didn't pull away, it deepened—not in urgency, but in feeling.</p>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic">
+        It lingered.<br><br>
+        Warm.<br><br>
+        Gentle.
+      </p>
+    </div>
+
+    <p class="anim-hidden">Sweet enough to make time feel unsteady.</p>
+
+    <p class="anim-hidden">Jenna's fingers tightened slightly against him.</p>
+
+    <div class="night-text">
+      <p class="anim-hidden">There was only the softness of his lips, the warmth of his hand at her neck, the closeness of him that made everything inside her feel suddenly, achingly awake.</p>
+    </div>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic">
+        It wasn't impulsive.<br><br>
+        It was a kiss of recognition.
+      </p>
+    </div>
+
+    <div class="night-text">
+      <p class="anim-hidden">Like two hearts arriving at the same place at the same time.</p>
+      <p class="anim-hidden">Like something long unfinished had finally found its answer.</p>
+    </div>
+
+    <div class="section-break"></div>
+
+    <!-- SEVENTH SHIFT: aftermath -->
+
+    <p class="anim-hidden">When they parted, it was only by a breath.</p>
+
+    <p class="anim-hidden">Their foreheads almost touched again.</p>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic">
+        Neither of them spoke.<br><br>
+        Neither of them needed to.
+      </p>
+    </div>
+
+    <div class="night-text">
+      <p class="anim-hidden">The air around them felt changed — softer, fuller, as if the classroom itself had become a secret it would never tell.</p>
+    </div>
+
+    <p class="anim-hidden">It felt like a place the world had stepped around, just to leave them this moment alone.</p>
+
+    <div class="section-break"></div>
+
+    <!-- EIGHTH SHIFT: the quiet certainty -->
+
+    <div class="night-text">
+      <p class="anim-hidden">And in that golden, breathless stillness, Jenna felt it with a certainty so quiet it almost hurt:</p>
+    </div>
+
+    <div class="dramatic-section anim-hidden">
+      <p class="dramatic" style="font-size: 1.4rem;">
+        If the world gave them a thousand beginnings,<br>
+        she would still find her way back to this moment.<br><br>
+        Back to him.
+      </p>
+    </div>
+
+    <div class="night-text">
+      <p class="anim-hidden">And if time ever tried to scatter them, if life ever pulled them apart and made them strangers again—</p>
+    </div>
+
+    <div class="whisper anim-hidden">
+      <p>He would still come looking for her.</p>
+      <p>He would come find the smallest traces of her</p>
+      <p>in every lifetime.</p>
+    </div>
+
+    <div class="section-break"></div>
+
+    <!-- FINAL MOMENT -->
+
+    <div class="final-words anim-hidden">
+      <p class="dim">For a little while longer, neither of them moved.</p>
+    </div>
+
+    <div class="final-words anim-hidden">
+      <p class="bright">They simply stayed.</p>
+    </div>
+
+  </div>
+
+  <div class="chapter-end">✦</div>
+</article>
   <!-- ==================== BOOK END ==================== -->
   <section class="book-end">
     <div>
