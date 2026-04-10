@@ -2636,7 +2636,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/garden-whispers.mp3"
+           data-audio="audio\tomomi_kato-blue-sky-231778.mp3"
            data-audio-label="Garden Whispers"
            data-crossfade="2.5"></div>
 
@@ -2661,7 +2661,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/open-sky.mp3"
+           data-audio="audio\SoundSide Vol.2 SWAN LAKE HD.mp3"
            data-audio-label="Open Sky"
            data-crossfade="3"></div>
 
@@ -2678,10 +2678,7 @@ body {
 
       <div class="section-break"></div>
 
-      <div class="audio-shift"
-           data-audio="audio/bat-flight.mp3"
-           data-audio-label="Evening Flight"
-           data-crossfade="2.5"></div>
+    
 
       <p class="anim-hidden">Then something caught her attention.</p>
 
@@ -2953,7 +2950,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/jade-runs.mp3"
+           data-audio="audio\ashot_danielyan-dramatic-tension-113206.mp3"
            data-audio-label="Jade Runs"
            data-crossfade="1.5"></div>
 
@@ -3369,7 +3366,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/promise.mp3"
+           data-audio="audio\SoundSide Vol.2 GARDEN OF THE FLORA MANSION HD.mp3"
            data-audio-label="The Promise"
            data-crossfade="3"></div>
 
@@ -3585,7 +3582,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/dinner-questions.mp3"
+           data-audio="audio\soundgallerybydmitrytaras-christmas-438153.mp3"
            data-audio-label="Dinner Questions"
            data-crossfade="2.5"></div>
 
@@ -3635,7 +3632,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/jades-heart.mp3"
+           data-audio="audio\musicword-my-passion-324892.mp3"
            data-audio-label="Jade's Heart"
            data-crossfade="3"></div>
 
@@ -3768,7 +3765,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/belonging.mp3"
+           data-audio="audio\SoundSide Vol.1 ORCA Nostalgia Mix HD.mp3"
            data-audio-label="Belonging"
            data-crossfade="2.5"></div>
 
@@ -4017,10 +4014,13 @@ body {
       <div class="line"></div>
     </div>
 
-    <!-- FIFTH SHIFT: epilogue -->
+    <!-- FIFTH SHIFT: epilogue (50-50 random) -->
     <div class="audio-shift"
          data-audio="audio/bluebox_originals-way-to-you-again-342367.mp3"
+         data-audio-alt="audio/alanajordan-backroads-and-promises-389467.mp3"
          data-audio-label="Years Later"
+         data-audio-label-alt="Moonlight Promise"
+         data-random-choice="true"
          data-crossfade="4"></div>
 
     <div class="epilogue-text">
@@ -4063,7 +4063,7 @@ body {
          alt="Anime girl looking out window at sunset" class="hero-bg">
     <div class="hero-text">
       <span class="chapter-label">Bonus Chapter</span>
-      <h1 class="chapter-title">A Day in the Classroom</h1>
+      <h1 class="chapter-title">Love found</h1>
     </div>
   </header>
 
@@ -4528,23 +4528,48 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ================================================================
-  //  CHAPTER AUDIO
+  //  ENHANCED AUDIO SYNC WITH BIDIRECTIONAL SUPPORT
   // ================================================================
   let isNavigating = false;
   const indicator = document.getElementById('chapter-indicator');
+  const audioTriggers = [];
+  let allShifts = [];
 
+  // Add currentSrc tracking to audio manager
+  A.currentSrc = null;
+
+  function changeAudio(src, label, fade) {
+    // Prevent re-triggering the same audio
+    if (A.currentSrc === src) return;
+    
+    A.currentSrc = src;
+    A.play(src, 0.35, fade, label);
+  }
+
+  function changeChapterAudio(src, label) {
+    // Prevent re-triggering the same audio
+    if (A.currentSrc === src) return;
+    
+    A.currentSrc = src;
+    A.play(src, 0.3, 2.5, label);
+  }
+
+  // ================================================================
+  //  CHAPTER AUDIO TRIGGERS
+  // ================================================================
   document.querySelectorAll('.chapter').forEach(ch => {
     // Use the chapter-hero as trigger instead of the full article
     // This ensures audio only plays when user SEES the chapter title
     const hero = ch.querySelector('.chapter-hero');
     const triggerEl = hero || ch;
 
-    ScrollTrigger.create({
+    const trigger = ScrollTrigger.create({
       trigger: triggerEl,
       start: 'top 30%',
+      // Both directions now use the same handler
       onEnter: () => {
-        if (isNavigating) return; // Skip during TOC navigation
-        A.play(ch.dataset.audio, 0.3, 2.5, ch.dataset.audioLabel || '');
+        if (isNavigating) return;
+        changeChapterAudio(ch.dataset.audio, ch.dataset.audioLabel || '');
         const title = ch.querySelector('.chapter-title');
         if (title) {
           indicator.textContent = title.textContent;
@@ -4553,11 +4578,15 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       onEnterBack: () => {
         if (isNavigating) return;
-        A.play(ch.dataset.audio, 0.3, 2.5, ch.dataset.audioLabel || '');
+        changeChapterAudio(ch.dataset.audio, ch.dataset.audioLabel || '');
         const title = ch.querySelector('.chapter-title');
-        if (title) indicator.textContent = title.textContent;
+        if (title) {
+          indicator.textContent = title.textContent;
+          indicator.classList.add('visible');
+        }
       }
     });
+    audioTriggers.push(trigger);
   });
 
   ScrollTrigger.create({
@@ -4567,26 +4596,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ================================================================
-  //  MID-CHAPTER AUDIO SHIFTS
+  //  MID-CHAPTER AUDIO SHIFTS (WITH BIDIRECTIONAL SUPPORT)
   // ================================================================
-  const allShifts = document.querySelectorAll('.audio-shift');
+  allShifts = Array.from(document.querySelectorAll('.audio-shift'));
+  
   allShifts.forEach((marker, index) => {
     const label = marker.dataset.audioLabel || marker.dataset.label || '';
     const src = marker.dataset.audio;
     const fade = parseFloat(marker.dataset.crossfade) || 2;
 
-    ScrollTrigger.create({
+    const trigger = ScrollTrigger.create({
       trigger: marker,
-      // Changed from 'top center' to 'top 75%'
-      // This means the shift element must be 75% up the viewport
-      // before the music changes — gives much more reading time
       start: 'top 75%',
+      // Both directions now handled with proper fallback logic
       onEnter: () => {
-        if (isNavigating) return; // DON'T play if we are just jumping through
-        A.play(src, 0.35, fade, label);
+        if (isNavigating) return;
+        if (src) changeAudio(src, label, fade);
       },
       onEnterBack: () => {
-        if (isNavigating) return; // DON'T play if we are just jumping through
+        if (isNavigating) return;
 
         // When scrolling back up, find the previous audio
         let prevSrc = null;
@@ -4605,13 +4633,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (prevSrc) {
-          A.play(prevSrc, 0.35, prevFade, prevLabel);
+          changeAudio(prevSrc, prevLabel, prevFade);
         } else if (myChapter && myChapter.dataset.audio) {
           // No previous shift — play chapter's main audio
-          A.play(myChapter.dataset.audio, 0.3, 2.5, myChapter.dataset.audioLabel || '');
+          changeChapterAudio(myChapter.dataset.audio, myChapter.dataset.audioLabel || '');
         }
       }
     });
+    audioTriggers.push(trigger);
   });
 
   // ================================================================
