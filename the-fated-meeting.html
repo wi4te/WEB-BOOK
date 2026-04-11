@@ -845,7 +845,6 @@ body {
 }
 
 
-## Part 2 of 4 (Lines ~1001–2000)
 
 ```html
 /* ============ STARFIELD BACKGROUND ============ */
@@ -1812,6 +1811,41 @@ body {
   #bonus .section-break::before {
     font-size: 1rem;
   }
+}
+
+/* ============ STORY NOTE (GOLDEN CHRISTMAS YOUTUBE LINK) ============ */
+.story-note {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: var(--max-w);
+  margin: 2rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+.story-note p {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #dcb15b; /* Golden color */
+  line-height: 2;
+  text-align: center !important;
+  text-shadow: 0 0 15px rgba(220, 177, 91, 0.15);
+  margin-bottom: 0.5rem;
+}
+
+.story-note a {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: rgba(220, 177, 91, 0.4); /* Golden link color */
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.story-note a:hover {
+  color: rgba(220, 177, 91, 0.8); /* Brighter golden on hover */
+  text-shadow: 0 0 10px rgba(220, 177, 91, 0.2);
 }
 </style>
 </head>
@@ -3411,7 +3445,7 @@ body {
 </div>
 
 <figure class="image-break anim-hidden">
-  <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=900&q=80"
+  <img src="images\blue-anime-silhouette-couple-aesthetic-q3l6516bwb3txsy5.webp"
        alt="Two silhouettes standing close together against the evening sky" loading="lazy">
 </figure>
 
@@ -3465,9 +3499,9 @@ body {
 
     <div class="chapter-end">✦</div>
   </article>
-## Part 4 of 4 (Chapter 7, Chapter 8, Book End, Script)
 
-```html
+
+
   <!-- ============================================================ -->
   <!--            CHAPTER 7 — THE DAY OF CHRISTMAS EVE               -->
   <!-- ============================================================ -->
@@ -3792,6 +3826,14 @@ body {
         </p>
       </div>
 
+      <div class="section-break"></div>
+
+      <!-- CHRISTMAS YOUTUBE LINK -->
+      <div class="story-note anim-hidden">
+        <p>When it's Christmas, you can't miss this.</p>
+        <a href="https://youtu.be/llj3Yh6LyVI?si=55zWp0GPDNxXzzuW" target="_blank" rel="noopener">watch here ↗</a>
+      </div>
+
     </div>
 
     <div class="chapter-end">✦</div>
@@ -3883,6 +3925,12 @@ body {
       <img src="images/images.jpg"
            alt="Halley's Comet streaking across the night sky" loading="lazy">
       <figcaption>Halley's Comet</figcaption>
+    </figure>
+
+    <figure class="image-break anim-hidden">
+      <img src="images\2659187dcd1f69350437a467caede49b.jpg"
+           alt="Halley's Comet in the night sky" loading="lazy" style="max-width: 80%;">
+      <figcaption>Comet in the night sky</figcaption>
     </figure>
 
     <div class="dramatic-section anim-hidden">
@@ -4063,7 +4111,7 @@ body {
          alt="Anime girl looking out window at sunset" class="hero-bg">
     <div class="hero-text">
       <span class="chapter-label">Bonus Chapter</span>
-      <h1 class="chapter-title">Love found</h1>
+      <h1 class="chapter-title">Delicate</h1>
     </div>
   </header>
 
@@ -4318,7 +4366,7 @@ body {
 
     <!-- FUN FACT -->
     <div class="fun-fact anim-hidden">
-      <p>Fun fact: Jenna and Jade are based on real person.</p>
+      <p>Fun fact: Jenna and Jade are based on a real person.</p>
     </div>
 
   </div>

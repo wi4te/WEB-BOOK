@@ -1437,30 +1437,38 @@ body {
 }
 
 /* ============================================================ */
-/*          BONUS CHAPTER — REFINED GOLDEN STYLING             */
+/*          BONUS CHAPTER — CLEAN GOLDEN STYLING               */
 /* ============================================================ */
 
-/* Warm, complementary background that matches golden text */
+/* Use same background as other chapters */
 #bonus {
-  background: linear-gradient(165deg, 
-    #1a1410 0%, 
-    #251d15 25%, 
-    #2d2418 50%, 
-    #251d15 75%, 
-    #1a1410 100%);
+  background: var(--bg);
   position: relative;
 }
 
-/* Subtle warm texture overlay */
+/* Chapter transitions */
 #bonus::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse at 30% 40%, rgba(220, 177, 91, 0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 60%, rgba(184, 134, 11, 0.03) 0%, transparent 50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, var(--bg), transparent);
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
+}
+
+#bonus::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to top, var(--bg), transparent);
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* Remove starfield effects */
@@ -1471,24 +1479,25 @@ body {
   display: none;
 }
 
-/* Normal TOC styling - no gold */
+/* Normal TOC styling */
 .toc a[href="#bonus"] {
   color: inherit !important;
   font-weight: inherit !important;
 }
 
-/* Chapter label — subtle gold */
+/* Chapter label */
 #bonus .chapter-label {
   color: #c9a165;
   font-weight: 600;
   letter-spacing: 0.4em;
+  text-transform: uppercase;
 }
 
-/* Chapter title — refined gold with subtle shimmer */
+/* Chapter title with shimmer */
 #bonus .chapter-title {
   color: #dcb15b;
   font-weight: 700;
-  text-shadow: 0 0 10px rgba(220, 177, 91, 0.12);
+  text-shadow: 0 0 15px rgba(220, 177, 91, 0.15);
   position: relative;
   overflow: hidden;
 }
@@ -1500,7 +1509,7 @@ body {
   left: -150%;
   width: 50%;
   height: 200%;
-  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  background: linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   animation: bonusTitleShine 5s ease-in-out infinite;
   pointer-events: none;
   transform: skewX(-25deg);
@@ -1512,79 +1521,209 @@ body {
   100% { left: 150%; }
 }
 
-/* Drop cap — golden */
+/* Drop cap */
 #bonus .drop-cap::first-letter {
   color: #dcb15b;
   font-weight: 700;
 }
 
-/* Dramatic sections — golden with subtle glow */
+/* Dramatic sections */
 #bonus .dramatic-section .dramatic {
   color: #dcb15b;
   font-weight: 600;
   font-style: italic;
   line-height: 1.8;
-  text-shadow: 0 0 8px rgba(220, 177, 91, 0.08);
 }
 
-/* Whisper sections — golden */
+/* ===== GENTLE GLOW FOR KEY MOMENTS ===== */
+
+/* Special glow for the kiss moment */
+#bonus .dramatic-section .dramatic[style*="1.5rem"] {
+  text-shadow:
+    0 0 15px rgba(220, 177, 91, 0.2),
+    0 0 30px rgba(220, 177, 91, 0.1);
+  animation: gentleGlow 4s ease-in-out infinite;
+}
+
+@keyframes gentleGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 15px rgba(220, 177, 91, 0.2),
+      0 0 30px rgba(220, 177, 91, 0.1);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(220, 177, 91, 0.25),
+      0 0 40px rgba(220, 177, 91, 0.12);
+  }
+}
+
+/* Glow for "thousand beginnings" moment */
+#bonus .dramatic-section .dramatic[style*="1.4rem"] {
+  text-shadow:
+    0 0 12px rgba(220, 177, 91, 0.15),
+    0 0 25px rgba(220, 177, 91, 0.08);
+  animation: subtleGlow 5s ease-in-out infinite;
+}
+
+@keyframes subtleGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 12px rgba(220, 177, 91, 0.15),
+      0 0 25px rgba(220, 177, 91, 0.08);
+  }
+  50% {
+    text-shadow:
+      0 0 16px rgba(220, 177, 91, 0.2),
+      0 0 32px rgba(220, 177, 91, 0.1);
+  }
+}
+
+/* Whisper sections - SIMPLE NO BOX */
+#bonus .whisper {
+  text-align: center;
+  margin: 1.5rem auto;
+  position: relative;
+  z-index: 1;
+}
+
 #bonus .whisper p {
-  color: #c9a165;
-  font-weight: 500;
+  font-size: 1.4rem;
   font-style: italic;
-  line-height: 1.7;
+  color: #c9a165;
+  line-height: 2;
+  text-align: center !important;
+  font-weight: 500;
+  /* No background, border, or padding */
 }
 
-/* Final words bright — golden */
-#bonus .final-words .bright {
-  color: #dcb15b;
-  font-weight: 600;
-  text-shadow: 0 0 6px rgba(220, 177, 91, 0.1);
+/* Final words */
+#bonus .final-words {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: var(--max-w);
+  margin: 2rem auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* Final words dim — subtle gray */
 #bonus .final-words .dim {
   color: #8a8074;
   font-weight: 400;
-}
-
-/* Section breaks — golden */
-#bonus .section-break::before {
-  color: #dcb15b;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
   opacity: 0.6;
 }
 
-/* Chapter end symbol — golden */
+#bonus .final-words .bright {
+  color: #dcb15b;
+  font-weight: 600;
+  font-size: 1.6rem;
+  text-shadow:
+    0 0 15px rgba(220, 177, 91, 0.15),
+    0 0 30px rgba(220, 177, 91, 0.08);
+  letter-spacing: 0.05em;
+  animation: finalGlow 6s ease-in-out infinite;
+}
+
+@keyframes finalGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 15px rgba(220, 177, 91, 0.15),
+      0 0 30px rgba(220, 177, 91, 0.08);
+  }
+  50% {
+    text-shadow:
+      0 0 20px rgba(220, 177, 91, 0.2),
+      0 0 40px rgba(220, 177, 91, 0.1);
+  }
+}
+
+/* Section breaks - SMOOTH TRANSITIONS */
+#bonus .section-break {
+  text-align: center;
+  margin: 4rem 0;
+  position: relative;
+}
+
+#bonus .section-break::before {
+  content: '✦';
+  color: #dcb15b;
+  opacity: 0.4;
+  font-size: 1.2rem;
+  animation: sectionPulse 3s ease-in-out infinite;
+}
+
+@keyframes sectionPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+/* Fun fact */
+#bonus .fun-fact {
+  text-align: center;
+  padding: 2rem 2rem 1rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+#bonus .fun-fact p {
+  font-size: 0.95rem;
+  color: #ffd700;
+  font-style: italic;
+  font-weight: 500;
+  text-align: center !important;
+  letter-spacing: 0.02em;
+  opacity: 1;
+  transition: all 0.4s ease;
+  cursor: default;
+}
+
+#bonus .fun-fact p:hover {
+  color: #ffeb3b;
+  text-shadow: 0 0 12px rgba(255, 235, 59, 0.25);
+  transform: scale(1.02);
+  letter-spacing: 0.04em;
+}
+
+/* Chapter end symbol */
 #bonus .chapter-end {
   color: #dcb15b !important;
   font-size: 2rem;
 }
 
-/* Image captions — muted gold */
+/* Image captions */
 #bonus .image-break figcaption {
   color: #a8927a;
   font-weight: 500;
   font-style: italic;
 }
 
-/* Image hover effect — warm glow */
+/* Image hover effect */
 #bonus .image-break:hover img {
   box-shadow: 0 0 25px rgba(220, 177, 91, 0.12), 0 0 50px rgba(220, 177, 91, 0.06);
 }
 
-/* Hero background — warmer tint */
+/* Hero background */
 #bonus .chapter-hero .hero-bg {
-  filter: brightness(0.22) saturate(0.7) sepia(0.15);
+  filter: brightness(.22) saturate(.6);
 }
 
-/* Keep all normal text at default color */
-#bonus .chapter-body p,
-#bonus .night-text p {
+/* Keep normal text default */
+#bonus .chapter-body p {
   color: inherit;
   font-weight: inherit;
 }
 
-/* Ensure content stays above background */
+/* Content layering */
 #bonus .chapter-body,
 #bonus .chapter-hero,
 #bonus .chapter-end {
@@ -1592,18 +1731,87 @@ body {
   z-index: 1;
 }
 
-/* Remove any conflicting starfield text styling */
-#bonus.starfield .chapter-body p {
-  color: var(--text);
+/* ===== MOBILE RESPONSIVENESS ===== */
+
+@media (max-width: 768px) {
+  /* Reduce title size */
+  #bonus .chapter-title {
+    font-size: 2rem;
+  }
+
+  /* Adjust whisper text */
+  #bonus .whisper p {
+    font-size: 1.2rem;
+  }
+
+  /* Scale down dramatic sections */
+  #bonus .dramatic-section .dramatic {
+    font-size: 1.05rem !important;
+  }
+
+  #bonus .dramatic-section .dramatic[style*="1.3rem"] {
+    font-size: 1.15rem !important;
+  }
+
+  #bonus .dramatic-section .dramatic[style*="1.4rem"] {
+    font-size: 1.2rem !important;
+  }
+
+  #bonus .dramatic-section .dramatic[style*="1.5rem"] {
+    font-size: 1.25rem !important;
+  }
+
+  /* Adjust final words */
+  #bonus .final-words .bright {
+    font-size: 1.3rem;
+  }
+
+  #bonus .final-words .dim {
+    font-size: 1rem;
+  }
+
+  /* Scale fun fact */
+  #bonus .fun-fact p {
+    font-size: 0.85rem;
+  }
+
+  /* Reduce section spacing on mobile */
+  #bonus .section-break {
+    margin: 2.5rem 0;
+  }
+
+  #bonus .final-words {
+    padding: 3rem 1.5rem;
+  }
+
+  /* Adjust transitions for mobile */
+  #bonus::before,
+  #bonus::after {
+    height: 100px;
+  }
 }
 
-#bonus.starfield .drop-cap::first-letter {
-  color: #dcb15b;
-}
+/* Extra small screens */
+@media (max-width: 480px) {
+  #bonus .chapter-title {
+    font-size: 1.6rem;
+  }
 
-#bonus.starfield .dramatic {
-  color: #dcb15b;
-  text-shadow: 0 0 8px rgba(220, 177, 91, 0.08);
+  #bonus .whisper p {
+    font-size: 1.1rem;
+  }
+
+  #bonus .dramatic-section .dramatic {
+    font-size: 1rem !important;
+  }
+
+  #bonus .final-words .bright {
+    font-size: 1.15rem;
+  }
+
+  #bonus .section-break::before {
+    font-size: 1rem;
+  }
 }
 </style>
 </head>
@@ -2428,7 +2636,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/garden-whispers.mp3"
+           data-audio="audio\tomomi_kato-blue-sky-231778.mp3"
            data-audio-label="Garden Whispers"
            data-crossfade="2.5"></div>
 
@@ -2453,7 +2661,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/open-sky.mp3"
+           data-audio="audio\SoundSide Vol.2 SWAN LAKE HD.mp3"
            data-audio-label="Open Sky"
            data-crossfade="3"></div>
 
@@ -2470,10 +2678,6 @@ body {
 
       <div class="section-break"></div>
 
-      <div class="audio-shift"
-           data-audio="audio/bat-flight.mp3"
-           data-audio-label="Evening Flight"
-           data-crossfade="2.5"></div>
 
       <p class="anim-hidden">Then something caught her attention.</p>
 
@@ -2745,7 +2949,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/jade-runs.mp3"
+           data-audio="audio\ashot_danielyan-dramatic-tension-113206.mp3"
            data-audio-label="Jade Runs"
            data-crossfade="1.5"></div>
 
@@ -3206,7 +3410,7 @@ body {
 </div>
 
 <figure class="image-break anim-hidden">
-  <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=900&q=80"
+  <img src="images\blue-anime-silhouette-couple-aesthetic-q3l6516bwb3txsy5.webp"
        alt="Two silhouettes standing close together against the evening sky" loading="lazy">
 </figure>
 
@@ -3377,7 +3581,7 @@ body {
       <div class="section-break"></div>
 
       <div class="audio-shift"
-           data-audio="audio/dinner-questions.mp3"
+           data-audio="audio\soundgallerybydmitrytaras-christmas-438153.mp3"
            data-audio-label="Dinner Questions"
            data-crossfade="2.5"></div>
 
@@ -3851,8 +4055,8 @@ body {
          data-crossfade="3"></div>
 
   <header class="chapter-hero">
-    <img src="https://images.unsplash.com/photo-1497015455546-1da71faf8d06?w=1400&q=80"
-         alt="Empty classroom bathed in golden afternoon sunlight" class="hero-bg">
+    <img src="images/beautiful-shot-sea-sunset_181624-58978.avif"
+         alt="Beautiful sea sunset" class="hero-bg">
     <div class="hero-text">
       <span class="chapter-label">Bonus Chapter</span>
       <h1 class="chapter-title">A Day in the Classroom</h1>
@@ -4096,6 +4300,8 @@ body {
 
     <div class="section-break"></div>
 
+    <div class="section-break"></div>
+
     <!-- FINAL MOMENT -->
 
     <div class="final-words anim-hidden">
@@ -4104,6 +4310,11 @@ body {
 
     <div class="final-words anim-hidden">
       <p class="bright">They simply stayed.</p>
+    </div>
+
+    <!-- FUN FACT -->
+    <div class="fun-fact anim-hidden">
+      <p>Fun fact: Jenna and Jade are based on real person.</p>
     </div>
 
   </div>
